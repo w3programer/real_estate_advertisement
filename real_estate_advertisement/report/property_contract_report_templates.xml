@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="installment_table">
+<!--        <div class="row" >-->
+<!--            <div class="col-12" >-->
+                <table class="table table-sm">
+                    <thead>
+                        <th>Description</th>
+                        <th class="text-center">Payment Date</th>
+                        <th class="text-center">Due Date</th>
+                        <th class="text-center">Amount</th>
+                        <th class="text-center">Delay Fine</th>
+                        <th class="text-center">Paid Amount</th>
+                        <th class="text-center">Remaining Amount</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.amount_installment_ids" t-as="installment_id">
+                            <tr>
+                                <td>
+                                    <span t-field="installment_id.description"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="installment_id.start_date"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="installment_id.due_date"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="installment_id.amount_total"
+                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="installment_id.delay_fine_amount"
+                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="installment_id.paid_amount"
+                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="installment_id.balance_amount"
+                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+<!--            </div>-->
+<!--        </div>-->
+
+    </template>
+
+
+    <template id="report_property_contract_document">
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+
+            <div class="page">
+                <div class="oe_structure"/>
+                <h1 t-field="doc.name"/>
+                <div class="row">
+                    <div class="col-6 pr-0">
+                        <h5 style="background: #4c4c4c;margin-bottom: 0;padding: 7px;font-weight: bold;color: white;">
+                            Buyer Details
+                        </h5>
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <th>Client</th>
+                                <td>
+                                    <span t-field="doc.partner_id"
+                                          t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Phone</th>
+                                <td>
+                                    <span t-field="doc.phone"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <th>Email</th>
+                                <td>
+                                    <span t-field="doc.email"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-6 pl-0">
+                        <h5 style="background: #4c4c4c;margin-bottom: 0;padding: 7px;font-weight: bold;color: white;">
+                            Seller Details
+                        </h5>
+                        <table class="table table-sm table-borderless">
+                            <t t-if="doc.responsible_person_is == 'dealer'">
+                                <tr>
+                                    <th>Dealer</th>
+                                    <td>
+                                        <span t-field="doc.responsible_person_id"
+                                              t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Owner</th>
+                                    <td>
+                                        <span t-field="doc.property_owner_id"
+                                              t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                                    </td>
+                                </tr>
+
+                            </t>
+
+                            <t t-else="">
+                                <tr>
+                                    <th>Owner</th>
+                                    <td>
+                                        <span t-field="doc.responsible_person_id"
+                                              t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
+                                    </td>
+                                </tr>
+                            </t>
+
+
+                        </table>
+
+                    </div>
+                </div>
+
+                <h5 class="mt-2"
+                    style="background: #4c4c4c;margin-bottom: 0;padding: 7px;font-weight: bold;color: white;">Property
+                    Details
+                </h5>
+                <div class="row">
+
+                    <div class="col-6">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <th>Name</th>
+                                <td>
+                                    <span t-field="doc.property_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td>
+                                    <span t-field="doc.main_property_id"/>
+                                    <span t-esc="doc.main_property_id.display_address()"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>For</th>
+                                <td>
+                                    <span t-if="doc.property_for == 'sale'">
+                                        Purchase
+                                    </span>
+                                    <span t-else="">
+                                        Rent
+                                    </span>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <th>Confirmation Date</th>
+                                <td>
+                                    <span t-field="doc.confirmation_datetime"/>
+                                </td>
+                            </tr>
+                            <t t-if="doc.availability == 'immediately'">
+                                <tr>
+                                    <th>Availability</th>
+                                    <td>
+                                        <span t-field="doc.availability"/>
+                                    </td>
+                                </tr>
+                            </t>
+                            <t t-else="">
+                                <tr>
+                                    <th>Available From</th>
+                                    <td>
+                                        <span t-field="doc.date_availability"/>
+                                    </td>
+                                </tr>
+                            </t>
+
+                            <t t-if="doc.property_for == 'sale' and doc.sale_offer_id">
+                                <tr>
+                                    <th>Offer Applied</th>
+                                    <td>
+                                        <span t-field="doc.sale_offer_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Offer Price</th>
+                                    <td>
+                                        <span t-field="doc.property_offer_price"/>
+                                    </td>
+                                </tr>
+                            </t>
+
+                            <t t-if="doc.property_for == 'rent' and doc.rent_offer_id">
+                                <tr>
+                                    <th>Offer Applied</th>
+                                    <td>
+                                        <span t-field="doc.rent_offer_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Offer Price</th>
+                                    <td>
+                                        <span t-field="doc.property_offer_price"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+
+                <h5 class="mt-2"
+                    style="background: #4c4c4c;margin-bottom: 0;padding: 7px;font-weight: bold;color: white;">Payment
+                    Details
+                </h5>
+
+                <div class="row">
+                    <div class="col-6">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <th>Payment to Pay</th>
+                                <td>
+                                    <span t-field="doc.payment_paid"/>
+                                </td>
+                            </tr>
+                            <tr t-if="doc.payment_paid == 'installment'">
+                                <th>
+                                    Installment Scheme
+                                </th>
+                                <td>
+                                    <span t-field="doc.config_installment_id"/>
+                                </td>
+                            </tr>
+
+                            <tr t-if="doc.tax_ids">
+                                <th>Taxes</th>
+                                <td>
+                                    <t t-set="all_tax" t-value="', '.join(doc.tax_ids.mapped('name'))"/>
+                                    <span t-esc="all_tax"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <table class="table table-sm table-borderless">
+                            <t t-if="doc.property_for == 'sale'">
+                                <tr>
+                                    <th>Property Selling Price</th>
+                                    <td>
+                                        <span t-field="doc.property_selling_price"/>
+                                    </td>
+                                </tr>
+                            </t>
+                            <t t-else="">
+                                <tr>
+                                    <th>Rent Price</th>
+                                    <td>
+                                        <span t-field="doc.rent_price"/>
+                                        /
+                                        <span t-field="doc.rent_uom"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Minimum Rent Duration</th>
+                                    <td>
+                                        <span t-field="doc.minimum_rent_duration"/>
+                                        <span t-field="doc.minimum_rent_duration_uom"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Security Deposit Amount</th>
+                                    <td>
+                                        <span t-field="doc.security_deposit_amount"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Rent Duration</th>
+                                    <td>
+                                        <span t-field="doc.client_expected_rent_duration"/>
+                                        <span t-field="doc.rent_duration_uom"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Property Rent Price</th>
+                                    <td>
+                                        <span t-field="doc.property_rent_price"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+
+                <t t-if="doc.payment_paid == 'installment'">
+                    <h5 class="mt-2"
+                        style="background: #4c4c4c;margin-bottom: 0;padding: 7px;font-weight: bold;color: white;">After
+                        Applying Installment Scheme
+                    </h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table table-sm table-borderless">
+                                <tr>
+                                    <th>Down Payment Amount</th>
+                                    <td>
+                                        <span t-field="doc.down_payment_amount"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total Number Of Installments</th>
+                                    <td>
+                                        <span t-field="doc.no_of_installment"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total Contract Amount</th>
+                                    <td>
+                                        <span t-field="doc.total_emi_amount"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-6">
+                            <table class="table table-sm table-borderless">
+                                <tr>
+                                    <th>Total Paid Amount</th>
+                                    <td>
+                                        <span t-field="doc.paid_installment_emi"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total Due Amount</th>
+                                    <td>
+                                        <span t-field="doc.remaining_balance"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h5 class="mt-2"
+                        style="background: #4c4c4c;margin-bottom: 0;padding: 7px;font-weight: bold;color: white;">
+                        Installments Details
+                    </h5>
+                    <t t-call="real_estate_advertisement.installment_table"/>
+                </t>
+                <t t-if="doc.payment_paid == 'rental_installment'">
+                    <h5 class="mt-2"
+                        style="background: #4c4c4c;margin-bottom: 0;padding: 7px;font-weight: bold;color: white;">Rent
+                        Installments Details
+                    </h5>
+                    <t t-call="real_estate_advertisement.installment_table"/>
+                </t>
+
+                <div class="clearfix mt-3" name="total_summary">
+                    <div id="total" class="row" name="total">
+                        <div class="col-5  ml-auto">
+                            <table class="table table-sm">
+                                <tr class="border-black o_subtotal" style="">
+                                    <td name="td_amount_untaxed_label">
+                                        <strong>Total Contract Amount</strong>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="doc.total_emi_amount"/>
+                                    </td>
+                                </tr>
+
+                                <tr style="">
+
+                                    <td>
+                                        Tax Amount
+                                    </td>
+                                    <td name="td_amount_by_group_3" class="text-right o_price_total">
+                                        <spant t-field="doc.tax_amount"/>
+                                    </td>
+
+                                </tr>
+                                <tr style="">
+
+                                    <td>
+                                        Contract Total Amount With Tax
+                                    </td>
+                                    <td name="td_amount_by_group_3" class="text-right o_price_total">
+                                        <spant t-field="doc.contract_total_amount_with_tax"/>
+                                    </td>
+
+                                </tr>
+                                <tr style="">
+
+                                    <td>
+                                        Total Paid Amount
+                                    </td>
+                                    <td name="td_amount_by_group_3" class="text-right o_price_total">
+                                        <spant t-field="doc.paid_installment_emi"/>
+                                    </td>
+
+                                </tr>
+
+                                <tr class="border-black o_total">
+                                    <td>
+                                        <strong>Total Due Amount</strong>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="doc.remaining_balance"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="report_property_contract">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="real_estate_advertisement.report_property_contract_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>
