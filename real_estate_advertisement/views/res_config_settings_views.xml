@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.real.estate</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="80"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Real Estate" string="Real Estate"
+                     data-key="real_estate_advertisement">
+                    <h2>Payment Reminder</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="Send reminder email before due date">
+                            <div class="o_setting_left_pane">
+                                <field name="send_contract_payment_reminder"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="send_contract_payment_reminder"/>
+                                <div class="text-muted">
+                                    Send payment reminder email before due date for installment
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('send_contract_payment_reminder', '=', False)]}"
+                             title="Send reminder email before  start date">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="remind_before" string="Send reminder before"/>
+                                <field name="remind_before"/>
+                                <div class="text-muted">
+                                    Send reminder email before payment start date for installment
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('send_contract_payment_reminder', '=', False)]}"
+                             title="Send reminder email on due date">
+                            <div class="o_setting_left_pane">
+                                <field name="remind_on_due_date"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="remind_on_due_date"/>
+                                <div class="text-muted">
+                                    Send payment reminder email on due date for installment
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('send_contract_payment_reminder', '=', False)]}"
+                             title="Send reminder email after due date">
+                            <div class="o_setting_left_pane">
+                                <field name="remind_every_day_after_due_date"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+
+                                <label for="remind_every_day_after_due_date"/>
+                                <div class="text-muted">
+                                    Send payment reminder email every day after due date for installment
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="action_real_estate_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'real_estate_advertisement', 'bin_size': False}</field>
+    </record>
+
+    <menuitem id="menu_real_estate_settings" name="Settings" parent="configuration_menu"
+              action="action_real_estate_settings" sequence="1"/>
+
+</odoo>

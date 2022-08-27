@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_property_property_contract_form" model="ir.ui.view">
+            <field name="name">view.property.property.contract.form</field>
+            <field name="model">property.property.contract</field>
+            <field name="arch" type="xml">
+                <form create="0">
+                    <header>
+<!--                        <button name="fetch_contracts_to_remind" type="object" string="Fetch"/>-->
+                        <button name="action_contract_send" string="Send by Email" type="object" class="oe_highlight"
+                                attrs="{'invisible':[('state', 'not in', ['draft'])]}"/>
+                        <button name="create_installment" class="btn-primary"
+                                string="Create Installment"
+                                type="object"
+                                attrs="{'invisible':['|','|',('installment_option','=',False),('state','in',['confirmed', 'done', 'cancelled']), ('payment_paid','=','all')]}"/>
+                        <button name="action_draft" string="Draft" type="object"
+                                attrs="{'invisible':[('state', '!=', 'cancelled')]}"/>
+                        <button name="action_confirmed" string="Confirm" type="object" class="oe_highlight"
+                                attrs="{'invisible':[('state', 'not in', ['draft', 'sent'])]}"/>
+                         <button name="action_contract_send" string="Send by Email" type="object"
+                                attrs="{'invisible':[('state', 'in', ['draft', 'cancelled'])]}"/>
+                        <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"
+                                attrs="{'invisible':['|','|',('state', '!=', 'confirmed'),('payment_paid','!=', 'all'), ('invoice_id', '!=', False)]}"/>
+                        <button name="action_done" string="Done" type="object" class="oe_highlight"
+                                attrs="{'invisible':[('state', '!=', 'confirmed')]}"/>
+                        <button name="action_cancelled" string="Cancel" type="object"
+                                attrs="{'invisible':[('state', '=', 'cancelled')]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,confirmed,done"/>
+                    </header>
+                    <sheet>
+                        <field name="invoice_id" invisible="1"/>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="view_invoice" attrs="{'invisible': [('invoice_id', '=', False)]}"
+                                    class="oe_stat_button"
+                                    icon="fa-pencil-square-o"
+                                    type="object">View Invoice
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Buyer Details (Second Party)">
+                                <field name="partner_id" widget="res_partner_many2one"
+                                       context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                       options='{"always_reload": True}'/>
+                                <field name="phone" widget="phone"/>
+                                <field name="email" widget="email"/>
+                            </group>
+                            <group string="Seller Details (First Party)">
+                                <field name="responsible_person_id" widget="res_partner_many2one"
+                                       context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                       options='{"always_reload": True}'/>
+                                <field name="user_id"/>
+                                <field name="responsible_person_is"/>
+                                <field name="property_owner_id"/>
+                            </group>
+                        </group>
+                        <group string="Property Details">
+                            <group>
+                                <field name="property_id" readonly="1" force_save="1"/>
+                                <field name="main_property_id" context="{'show_address': 1}"
+                                       options='{"always_reload": True}'/>
+                                <field name="property_for"/>
+                            </group>
+                            <group>
+
+                                <field name="availability"/>
+                                <field name="date_availability"
+                                       attrs="{'invisible': [('availability', '=', 'immediately')]}"/>
+
+                                <field name="currency_id" invisible="1"/>
+                                <field name="installment_option"
+                                       attrs="{'invisible': [('property_for', '=', 'rent')]}"/>
+                                <field name="confirmation_datetime"
+                                       attrs="{'invisible': [('confirmation_datetime', '=', False)]}"/>
+                            </group>
+                        </group>
+                        <h5 attrs="{'invisible': [('offer_info_message', '=', False)]}" class="text-info">
+                            <field name="offer_info_message" nolabel="1" readonly="1" force_save="1"/>
+                        </h5>
+                        <group attrs="{'invisible': [('offer_info_message', '=', False)]}">
+                            <group>
+                                <field name="all_valid_sale_offer_ids" invisible="1"/>
+                                <field name="all_valid_rent_offer_ids" invisible="1"/>
+                                <field name="sale_offer_id"
+                                       options="{'no_open': True, 'no_quick_create': True, 'no_create':True}"
+                                       domain="[('id','in', all_valid_sale_offer_ids)]"
+                                       attrs="{'invisible':['|',('property_for','=','rent'), ('offer_info_message', '=',False)]}"/>
+                                <field name="rent_offer_id" domain="[('id','in', all_valid_rent_offer_ids)]"
+                                       options="{'no_open': True, 'no_quick_create': True, 'no_create':True}"
+                                       attrs="{'invisible':['|',('property_for','=','sale'), ('offer_info_message', '=',False)]}"/>
+                            </group>
+                            <group>
+                                <!--                                <field name="property_sale_offer_price"-->
+                                <!--                                       attrs="{'invisible': [('sale_offer_id','=', False)]}"/>-->
+                                <label for="property_offer_price"/>
+                                <div class="o_row">
+                                    <field name="property_offer_price" readonly="1" force_save="1"
+                                           attrs="{'invisible': [('sale_offer_id','=', False),('rent_offer_id','=', False)]}"/>
+                                    <button name="apply_offer" class="oe_highlight" string="Apply Offer" type="object"
+                                            attrs="{'invisible': [('sale_offer_id','=', False),('rent_offer_id','=', False)]}"/>
+                                </div>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Payment Details">
+                                <div attrs="{'invisible':[('payment_paid','!=','installment')]}">
+                                    <em>
+                                        If the total payment is paid in installments, then you have to pay some extra
+                                        amount.
+                                    </em>
+                                </div>
+                                <group>
+                                    <group attrs="{'invisible': [('installment_option', '=', False)]}">
+                                        <field name="payment_paid"
+                                               attrs="{'invisible': [('installment_option', '=', False)]}"/>
+                                        <field name="config_installment_id" readonly="1" force_save="1"
+                                               attrs="{'invisible':[('payment_paid','=','all')]}"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('property_for','!=','rent')]}">
+                                        <label for="rent_price" attrs="{'invisible':[('property_for','in',['sale'])]}"/>
+
+                                        <div class="o_row" attrs="{'invisible':[('property_for','in',['sale'])]}">
+                                            <field name="rent_price" readonly="1" force_save="1"/>
+                                            /
+                                            <field name="rent_uom" readonly="1" force_save="1"/>
+                                        </div>
+
+                                        <label for="minimum_rent_duration"
+                                               attrs="{'invisible':[('property_for','in',['sale'])]}"/>
+                                        <div class="o_row" attrs="{'invisible':[('property_for','in',['sale'])]}">
+                                            <field name="minimum_rent_duration" readonly="1" force_save="1"/>
+                                            <field name="minimum_rent_duration_uom" readonly="1" force_save="1"/>
+                                        </div>
+                                        <field name="security_deposit_amount"/>
+                                        <label for="client_expected_rent_duration"/>
+                                        <div class="o_row">
+                                            <field name="client_expected_rent_duration"
+                                                   attrs="{'required': [('property_for','=', 'rent')]}"/>
+                                            <field name="rent_duration_uom"
+                                                   attrs="{'required': [('property_for','=', 'rent')]}"/>
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <field name="property_selling_price"
+                                               attrs="{'invisible':[('property_for','=','rent')]}"/>
+                                        <field name="property_rent_price"
+                                               attrs="{'invisible':[('property_for','!=','rent')]}"/>
+                                        <field name="tax_ids" widget="many2many_tags" invisible="1"/>
+                                        <field name="contract_complete_date"/>
+                                    </group>
+                                </group>
+                                <group string="After Applying Installment Scheme"
+                                       attrs="{'invisible':[('payment_paid','!=','installment')]}">
+                                    <group>
+                                        <field name="down_payment_amount"/>
+                                        <field name="no_of_installment" string="Total Number Of Installments"
+                                               force_save="1" readonly="1"/>
+                                        <field name="total_emi_amount"/>
+                                    </group>
+                                    <group>
+                                        <field name="paid_installment_emi"/>
+                                        <field name="remaining_balance"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Installments" attrs="{'invisible':[('payment_paid','!=','installment')]}">
+                                <field name="amount_installment_ids"/>
+                            </page>
+                            <page string="Rental Installments"
+                                  attrs="{'invisible':[('payment_paid','!=','rental_installment')]}">
+                                <field name="amount_installment_ids"/>
+                            </page>
+                            <page string="Documents">
+                                <group>
+                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                </group>
+                            </page>
+                        </notebook>
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="contract_total">
+                            <field name="total_emi_amount" widget='monetary'
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <field name="tax_amount" widget='monetary'
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <field name="contract_total_amount_with_tax" widget='monetary'
+                                   options="{'currency_field': 'currency_id'}"/>
+
+                            <field name="paid_installment_emi" widget='monetary'
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                <label for="remaining_balance"/>
+                            </div>
+                            <field name="remaining_balance" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                         <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_property_contract_kanban">
+            <field name="name">property.contract.kanban</field>
+            <field name="model">property.property.contract</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" sample="1" create="0">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="property_id"/>
+                    <!--                    <field name="amount_total"/>-->
+                    <!--                    <field name="date_order"/>-->
+                    <!--                    <field name="state"/>-->
+                    <field name="currency_id"/>
+                    <!--                    <field name="activity_state"/>-->
+                    <!--                    <progressbar field="activity_state"-->
+                    <!--                                 colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>-->
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_record_top mb16">
+                                    <div class="o_kanban_record_headings mt4">
+                                        <strong class="o_kanban_record_title">
+                                            <span>
+                                                <t t-esc="record.name.value"/>
+                                                <t t-esc="record.partner_id.value"/>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <strong>
+                                        <field name="contract_total_amount_with_tax" widget="monetary"/>
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left text-muted">
+                                        <span>
+
+                                            <t t-esc="record.property_id.value"/>,
+                                            <field name="main_property_id"/>
+                                        </span>
+                                          <field name="activity_ids" widget="kanban_activity"/>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <field name="state" widget="label_selection"
+                                               options="{'classes': {'draft': 'default', 'cancelled': 'default', 'done': 'success'}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <record id="view_property_property_contract_tree" model="ir.ui.view">
+            <field name="name">view.property.property.contract.tree</field>
+            <field name="model">property.property.contract</field>
+            <field name="arch" type="xml">
+                <tree create="0">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="phone" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="property_id"/>
+                    <field name="responsible_person_id"/>
+                    <field name="contract_total_amount_with_tax"/>
+                    <field name="remaining_balance"/>
+                    <field name="state" string="Status" decoration-success="state == 'done'" widget="badge"
+                           decoration-info="state == 'confirmed'" decoration-danger="state == 'cancelled'"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Search view for contract -->
+        <record id="view_property_contract_search" model="ir.ui.view">
+            <field name="name">view.property.contract.search</field>
+            <field name="model">property.property.contract</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="property_id"/>
+                    <field name="main_property_id" string="Main Property"/>
+
+                     <filter string="My Contracts" domain="[('user_id', '=', uid)]" name="my_contracts_filter"/>
+                                        <separator/>
+
+                    <filter name="confirmed" string="Confirmed" domain="[('state','=','confirmed')]"/>
+                    <filter name="done" string="Done" domain="[('state','=','done')]"/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                    <filter name="cancel" string="Cancelled" domain="[('state','=','cancelled')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="main_property" string="Property" context="{'group_by': 'main_property_id'}"/>
+                        <filter name="user_id" string="Responsible Person" context="{'group_by': 'user_id'}"/>
+                        <filter name="states" string="State" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_property_contract_graph">
+            <field name="name">property.contract.graph</field>
+            <field name="model">property.property.contract</field>
+            <field name="arch" type="xml">
+                <graph string="Property Contracts" sample="1">
+                    <field name="responsible_person_id"/>
+                    <field name="contract_total_amount_with_tax" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_property_contract_pivot">
+            <field name="name">property.contract.pivot</field>
+            <field name="model">property.property.contract</field>
+            <field name="arch" type="xml">
+                <pivot string="Property Contracts" sample="1">
+                    <field name="responsible_person_id"/>
+                    <field name="contract_total_amount_with_tax" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <!--action of contract property-->
+        <record id="action_property_property_contract_id" model="ir.actions.act_window">
+            <field name="name">Properties Contract</field>
+            <field name="res_model">property.property.contract</field>
+            <field name="view_mode">kanban,tree,form,graph,pivot,activity</field>
+            <field name="context">{'search_default_my_contracts_filter': 1}</field>
+        </record>
+
+        <menuitem id="contract_menu_main" groups="group_real_estate_user"
+                  name="Contract"
+                  parent="real_state_menu"
+                  sequence="3"/>
+
+        <menuitem id="contract_menu" groups="group_real_estate_user"
+                  name="Property Contracts"
+                  parent="contract_menu_main"
+                  action="action_property_property_contract_id"
+                  sequence="1"/>
+
+    </data>
+</odoo>

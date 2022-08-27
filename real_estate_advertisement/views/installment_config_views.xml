@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_config_installment_form" model="ir.ui.view">
+            <field name="name">view.config.installment.form</field>
+            <field name="model">config.installment</field>
+            <field name="arch" type="xml">
+                <form string="EMI installment">
+                    <sheet>
+                        <h1 class="oe_title">
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="use_for"/>
+                                <field name="no_of_installment"
+                                       attrs="{'invisible': [('use_for','=','rent')], 'required':[('use_for','!=','rent')]}"/>
+                                <label for="apply_fine_after"/>
+                                <div class="o_row">
+                                    <field name="apply_fine_after" force_save="1"/>
+                                    Day(s)
+                                </div>
+                                <label for="delay_fine"/>
+                                <div class="o_row">
+                                    <field name="delay_fine"/>/
+                                    <field name="from_delay"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="extra_percentage"
+                                       attrs="{'invisible': [('use_for','=','rent')], 'required':[('use_for','!=','rent')]}"/>
+                                <field name="is_active"/>
+
+                            </group>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="view_config_installment_tree" model="ir.ui.view">
+            <field name="name">view.config.installment.tree</field>
+            <field name="model">config.installment</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="no_of_installment"/>
+                    <field name="extra_percentage"/>
+                    <field name="delay_fine"/>
+                    <field name="from_delay"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--action of for installment views-->
+        <record id="action_config_installment_id" model="ir.actions.act_window">
+            <field name="name">Installment Schemes</field>
+            <field name="res_model">config.installment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="Installment_menu"  groups="group_real_estate_manager"
+                  name="Installment"
+                  action="action_config_installment_id"
+                  parent="configuration_menu"
+                  sequence="20"/>
+
+
+    </data>
+</odoo>

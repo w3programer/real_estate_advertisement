@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_property_search_form" model="ir.ui.view">
+            <field name="name">view.property.search.form</field>
+            <field name="model">property.search</field>
+            <field name="arch" type="xml">
+                <form string="Property" create="0">
+                    <sheet>
+                        <h1 class="text-primary">Property Quick Search</h1>
+                        <group>
+                            <group>
+                                <field name="property_name"/>
+                                <field name="property_for"/>
+                                <field name="property_type_id"/>
+                                <label for="minimum_price" string="Price Range"/>
+                                <div class="o_row">
+                                    <field name="minimum_price"/>
+                                    to
+                                    <field name="maximum_price"/>
+                                </div>
+
+                                <field name="currency_id" invisible="1"/>
+
+                                <label for="living_area_min" string="Living Area Range"/>
+                                <div class="o_row">
+                                    <field name="living_area_min"/>
+                                    to
+                                    <field name="living_area_max"/>
+                                    <field name="area_uom_category" invisible="1"/>
+                                    <field name="area_uom" options="{'no_open': True, 'no_create': True}"/>
+                                </div>
+                                <field name="availability"/>
+                                <field name="date_availability"
+                                       attrs="{'invisible': [('availability', '!=', 'from_date')], 'required': [('availability', '=', 'from_date')]}"/>
+                            </group>
+                            <group>
+                                <label for="city" string=" Location"/>
+                                <div class="o_row">
+                                    <field name="city" placeholder="City"/>
+                                    <field name="state_id" placeholder="State"/>
+
+                                </div>
+                                <label for="country_id" string=""/>
+                                <div>
+                                    <field name="country_id" placeholder="Country" class="o_address_country"/>
+                                </div>
+                                <field name="furnishing"/>
+                                <field name="garage"/>
+                                <field name="garden"/>
+                                <field name="offer" string="Offers Available"/>
+                            </group>
+                        </group>
+                        <div class="my-3 alert alert-info" role="alert">If the value is provided in the field, then it will be used as a search criteria.</div>
+                        <footer class="mb-3">
+                            <button name="wizard_search_method" string="Search" type="object" class="btn-primary mr-2"/>
+                            <button string="Reset" class="btn-secondary" type="object" name="reset_search"/>
+                        </footer>
+                        <group string="Search results" attrs="{'invisible': [('property_ids','=', [])]}">
+                            <field name="property_ids" nolabel="1">
+                                <tree>
+
+                                    <field name="name"/>
+                                    <field name="main_property_id"/>
+                                    <field name="date_availability" attrs="{'column_invisible': [('parent.availability', '!=', 'from_date')]}"/>
+                                    <field name="living_area"/>
+                                    <field name="expected_price"/>
+<!--                                    <field name="selling_price"/>-->
+                                    <field name="currency_id" invisible="1"/>
+                                    <button name="show_form_view" string="view" type="object"/>
+                                </tree>
+                            </field>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--action for search property-->
+        <record id="action_property_search_id" model="ir.actions.act_window">
+            <field name="name">Property Quick Search</field>
+            <field name="res_model">property.search</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="search_menu"
+                  name="Quick Search"
+                  parent="real_state_menu"
+                  action="action_property_search_id"
+                  sequence="2"/>
+    </data>
+</odoo>

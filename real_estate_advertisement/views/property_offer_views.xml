@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_property_sale_offer_tree" model="ir.ui.view">
+            <field name="name">view.property.sale.offer.tree</field>
+            <field name="model">property.sale.offer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="main_property_id"/>
+                    <field name="property_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="offer_price" optional="show"/>
+                    <field name="description" optional="show"/>
+                    <field name="state" decoration-warning="state == 'inactive'"
+                           decoration-success="state == 'active'"
+                           decoration-danger="state == 'expired'" widget="badge"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_property_sale_offer_form_view" model="ir.ui.view">
+            <field name="name">view.property.sale.offer.form</field>
+            <field name="model">property.sale.offer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="inactive,active,expired"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Offer Name e.g. New Year Offer" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="main_property_id" required="1" context="{'show_address': 1}"
+                                       options='{"always_reload": True, "no_create": True}'/>
+                                <field name="property_id" required="1" options="{'no_create': True}"
+                                       domain="[('main_property_id', '=', main_property_id), ('property_for','=', 'sale')]"/>
+                                <label for="start_date" string="Offer Duration"/>
+                                <div class="o_row">
+                                    <field name="start_date" required="1"/>
+                                    to
+                                    <field name="end_date" required="1"/>
+                                </div>
+
+                                <field name="partner_id"/>
+                            </group>
+                            <group>
+                                <field name="offer_price"/>
+                                <field name="description"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_property_sale_offer_search" model="ir.ui.view">
+            <field name="name">view.property.sale.offer.search</field>
+            <field name="model">property.sale.offer</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="main_property_id" string="Main Property"/>
+                    <field name="property_id" string="Property"/>
+                    <field name="partner_id" string="Customer Name"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="main_property" string="Main Property" context="{'group_by': 'main_property_id'}"/>
+                        <filter name="property" string="Property" context="{'group_by': 'property_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="view_property_rent_offer_tree" model="ir.ui.view">
+            <field name="name">view.property.rent.offer.tree</field>
+            <field name="model">property.rent.offer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="main_property_id"/>
+                    <field name="property_id"/>
+                    <field name="duration"/>
+                    <field name="duration_unit"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="offer_price" optional="show"/>
+                    <field name="description" optional="show"/>
+                    <field name="state" decoration-warning="state == 'inactive'"
+                           decoration-success="state == 'active'"
+                           decoration-danger="state == 'expired'" widget="badge"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_property_rent_offer_form_view" model="ir.ui.view">
+            <field name="name">view.property.rent.offer.form</field>
+            <field name="model">property.rent.offer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="inactive,active,expired"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Offer Name e.g. New Year Offer" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="main_property_id" required="1" context="{'show_address': 1}"
+                                       options='{"always_reload": True, "no_create": True}'/>
+                                <field name="property_id" required="1" options="{'no_create': True}"
+                                       domain="[('main_property_id', '=', main_property_id), ('property_for','=', 'sale')]"/>
+                                <label for="start_date" string="Offer Duration"/>
+                                <div class="o_row">
+                                    <field name="start_date" required="1"/>
+                                    to
+                                    <field name="end_date" required="1"/>
+                                </div>
+
+                                <field name="partner_id"/>
+                            </group>
+                            <group>
+                                <label string="Minimum Rent Duration" for="duration"/>
+                                <div class="o_row">
+                                    <field name="duration" required="1"/>
+                                    <field name="duration_unit" required="1"/>
+                                </div>
+
+                                <field name="offer_price"/>
+                                <field name="description"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_property_rent_offer_search" model="ir.ui.view">
+            <field name="name">view.property.rent.offer.search</field>
+            <field name="model">property.rent.offer</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="main_property_id" string="Main Property"/>
+                    <field name="property_id" string="Property"/>
+                    <field name="partner_id" string="Customer Name"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="main_property" string="Main Property" context="{'group_by': 'main_property_id'}"/>
+                        <filter name="property" string="Property" context="{'group_by': 'property_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_property_sale_offer" model="ir.actions.act_window">
+            <field name="name">Property Sale Offers</field>
+            <field name="res_model">property.sale.offer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_property_rent_offer" model="ir.actions.act_window">
+            <field name="name">Property Rent Offers</field>
+            <field name="res_model">property.rent.offer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="property_sale_offer_menu" groups="group_real_estate_manager"
+                  name="Property Sale Offers"
+                  action="action_property_sale_offer"
+                  parent="real_estate_advertisement.configuration_menu"
+                  sequence="11"/>
+
+        <menuitem id="property_rent_offer_menu" groups="group_real_estate_manager"
+                  name="Property Rent Offers"
+                  action="action_property_rent_offer"
+                  parent="real_estate_advertisement.configuration_menu"
+                  sequence="12"/>
+    </data>
+</odoo>
