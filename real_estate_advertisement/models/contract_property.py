@@ -445,11 +445,21 @@ class PropertyContract(models.Model):
             if not self.amount_installment_ids:
                 raise ValidationError("Add the installment lines before confirm!")
             emi_date = datetime.today()
-            due_date = emi_date + timedelta(self.config_installment_id.apply_fine_after)
+            if self.config_installment_id.duration_type == 'days':
+                due_date = emi_date + relativedelta(days=1)
+            elif self.config_installment_id.duration_type == 'months':
+                due_date = emi_date + relativedelta(months=1)
+            else:
+                due_date = emi_date + relativedelta(months=1)
+            # due_date = emi_date + timedelta(self.config_installment_id.apply_fine_after)
             for amount_installment in self.amount_installment_ids:
                 amount_installment.start_date = emi_date
                 amount_installment.due_date = due_date
-                emi_date = emi_date + relativedelta(months=1)
+
+                if self.config_installment_id.duration_type=='days':
+                     emi_date = emi_date + relativedelta(days=self.config_installment_id.duration)
+                if self.config_installment_id.duration_type=='months':
+                     emi_date = emi_date + relativedelta(months=self.config_installment_id.duration)
                 due_date = emi_date + timedelta(self.config_installment_id.apply_fine_after)
         elif self.payment_paid == "rental_installment":
             if not self.amount_installment_ids:

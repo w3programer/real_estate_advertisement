@@ -53,6 +53,7 @@
                 <tree create="0" delete="0">
                     <field name="description"/>
                     <field name="start_date"/>
+                    <field name="invoice_date"/>
                     <field name="due_date"/>
                     <field name="untaxed_amount" invisible="1"/>
                     <field name="amount_with_tax" optional="hide"/>

@@ -18,7 +18,7 @@
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['account'],
+    'depends': ['account','account_accountant'],
 
     # always loaded
     'data': [
@@ -43,6 +43,7 @@
         'report/property_description_brochure_template.xml',
         'report/report_property_actions.xml',
         'data/mail_template_data.xml',
+        'views/project.xml'
     ],
     'assets': {
         'web.assets_backend': [

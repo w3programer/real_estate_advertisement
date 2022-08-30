@@ -13,7 +13,8 @@ class ConfigInstallment(models.Model):
     from_delay = fields.Selection([('day', 'Day'), ('week', 'Week'), ('month', 'Month')], default="day", required=True)
     is_active = fields.Boolean("Active")
     use_for = fields.Selection([("sale", "Sale"), ("rent", "Rent")], default="sale", required=True)
-
+    duration = fields.Integer(default=1)
+    duration_type = fields.Selection([('days', 'Days'), ('months', 'Month')], default='months')
     @api.onchange("use_for")
     def onchange_use_for(self):
         if self.use_for == "rent":

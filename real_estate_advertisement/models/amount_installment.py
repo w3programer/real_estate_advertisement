@@ -65,6 +65,11 @@ class AmountInstallment(models.Model):
     @api.depends('invoice_ids.payment_state')
     def _compute_amount(self):
         for rec in self:
+            rec.delay_fine_amount = 0
+            rec.fully_invoiced = False
+            rec.paid_amount = 0
+            rec.balance_amount = 0
+            rec.amount_total = 0
             if not rec.due_date and not rec.start_date:
                 rec.delay_fine_amount = 0
                 rec.fully_invoiced = False
@@ -77,7 +82,10 @@ class AmountInstallment(models.Model):
             if not rec.invoice_date and rec.due_date and today_date > rec.due_date:
                 days = (today_date - rec.due_date).days
                 per_day_fine_percent = rec.property_contract_id.config_installment_id.delay_fine
-                per_day_fine_amount = rec.amount_with_tax * per_day_fine_percent / 100
+                if per_day_fine_percent>0:
+                     per_day_fine_amount = rec.amount_with_tax * per_day_fine_percent / 100
+                else:
+                    per_day_fine_amount = rec.amount_with_tax
                 total_fine = per_day_fine_amount * days
                 rec.delay_fine_amount = total_fine
                 rec.amount_total = total_fine + rec.amount_with_tax
@@ -247,6 +255,8 @@ class AmountInstallment(models.Model):
     #             rec.installment_total_with_fine = rec.amount
 
     def create_invoice(self):
+        if self.property_contract_id.state!='confirmed':
+            raise ValidationError("Please Confirm your contract ")
         current_installment_number = self.sequence
         previous_installment_line_ids = self.property_contract_id.amount_installment_ids.filtered(
             lambda installment_line: installment_line.sequence < current_installment_number)

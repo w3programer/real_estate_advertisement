@@ -99,7 +99,7 @@
                                         <field name="facing_direction"/>
                                         <field name="garage"/>
                                         <field name="garden"/>
-                                        <field name="garden_type" attrs="{'invisible': [('garden', '=', False)]}"/>
+                                        <field name="garden_type" attrs="{'required': [('garden', '!=', False)],'invisible': [('garden', '=', False)]}"/>
                                         <field name="garden_area" attrs="{'invisible': [('garden', '=', False)]}"/>
                                         <field name="garden_orientation"
                                                attrs="{'invisible': [('garden', '=', False)]}"/>
@@ -428,7 +428,7 @@
         <menuitem id="properties_menu" groups="group_real_estate_user"
                   name="Properties"
                   parent="real_state_menu"
-                  sequence="1"/>
+                  sequence="2"/>
         <menuitem id="main_property_menu" groups="group_real_estate_user"
                   name="Main Property"
                   action="action_main_property_property_id"

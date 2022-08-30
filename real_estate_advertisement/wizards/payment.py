@@ -47,6 +47,8 @@ class EmiPayment(models.TransientModel):
                 'name': self.amount_installment_id.description,
                 'price_unit': self.paid_amount,
                 'tax_ids': tax,
+                'analytic_account_id':self.amount_installment_id.property_contract_id.property_id.analytic_acounting_id.id if self.amount_installment_id.property_contract_id.property_id.analytic_acounting_id else ''
+
             })]
             if self.fine_on_paid_amount:
                 invoice_lines.append((0, 0, {
@@ -54,6 +56,7 @@ class EmiPayment(models.TransientModel):
                     'name': "Delay Fine Charge",
                     'price_unit': self.fine_on_paid_amount,
                     # 'tax_ids': tax,
+                    'analytic_account_id': self.amount_installment_id.property_contract_id.property_id.analytic_acounting_id.id if self.amount_installment_id.property_contract_id.property_id.analytic_acounting_id else ''
                 }))
             invoice_due_date = self._context.get("invoice_date_due")
             invoice_due_date = fields.Date.to_date(invoice_due_date)

@@ -1,0 +1,2714 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* real_estate_advertisement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-30 19:17+0000\n"
+"PO-Revision-Date: 2022-08-30 19:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: real_estate_advertisement
+#: code:addons/real_estate_advertisement/wizards/payment.py:0
+#, python-format
+msgid " Paid amount always grater than 0."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.actions.report,print_report_name:real_estate_advertisement.action_report_property_contract
+msgid "'Contract - %s' % (object.name)"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.actions.report,print_report_name:real_estate_advertisement.action_report_contract_installment
+msgid "'Installment - %s' % (object.sequence)"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.actions.report,print_report_name:real_estate_advertisement.action_report_property_brochure
+msgid "'Property Brochure - %s' % (object.name)"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,body_html:real_estate_advertisement.mail_template_contract_done
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 12px;\">\n"
+"                        Hello,\n"
+"                        <t t-out=\"object.partner_id.name\"/>\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        Your\n"
+"                        <t t-out=\"object.property_for\"/>\n"
+"                        contract Ref\n"
+"                        <strong t-out=\"object.name or ''\"/>\n"
+"                        amounting in\n"
+"                        <strong t-out=\"format_amount(object.contract_total_amount_with_tax, object.currency_id) or ''\"/>\n"
+"                        has been completed successfully for the property\n"
+"                        <strong>\n"
+"                            <t t-out=\"object.property_id.name\"/>,\n"
+"                            <t t-out=\"object.main_property_id.name\"/>\n"
+"                        </strong>\n"
+"                        . All payments and formalities has been completed.\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        Do not hesitate to contact us if you have any questions.\n"
+"                        <br/>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,body_html:real_estate_advertisement.mail_template_contract_confirmation
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 12px;\">\n"
+"                        Hello,\n"
+"                        <t t-out=\"object.partner_id.name\"/>\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        Your\n"
+"                        <t t-out=\"object.property_for\"/>\n"
+"                        contract Ref\n"
+"                        <strong t-out=\"object.name or ''\"/>\n"
+"                        amounting in\n"
+"                        <strong t-out=\"format_amount(object.contract_total_amount_with_tax, object.currency_id) or ''\"/>\n"
+"                        has been confirmed for the property\n"
+"                        <strong>\n"
+"                            <t t-out=\"object.property_id.name\"/>,\n"
+"                            <t t-out=\"object.main_property_id.name\"/>\n"
+"                        </strong>\n"
+"                        . Complete all payments amd formalities.\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        Do not hesitate to contact us if you have any questions.\n"
+"                        <br/>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,body_html:real_estate_advertisement.mail_template_contract_installment_reminder
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 12px;\">\n"
+"                        Hello,\n"
+"                        <t t-out=\"object.property_contract_id.partner_id.name\"/>\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        Your\n"
+"                        <t t-out=\"object.property_contract_id.property_for\"/>\n"
+"                        contract Ref\n"
+"                        <strong t-out=\"object.property_contract_id.name or ''\"/>\n"
+"                        amounting in\n"
+"                        <strong t-out=\"format_amount(object.property_contract_id.contract_total_amount_with_tax, object.property_contract_id.currency_id) or ''\"/>\n"
+"                        for the property\n"
+"                        <strong>\n"
+"                            <t t-out=\"object.property_contract_id.property_id.name\"/>,\n"
+"                            <t t-out=\"object.property_contract_id.main_property_id.name\"/>\n"
+"                        </strong>\n"
+"                        has a pending installment.\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        <t t-set=\"doc\" t-value=\"object\"/>\n"
+"                        <h2>Installment Detail:\n"
+"                            <h5>Installment\n"
+"                                #\n"
+"                                <span t-field=\"doc.sequence\"/>\n"
+"                            </h5>\n"
+"                        </h2>\n"
+"                        <table class=\"table table-sm\">\n"
+"                            <tr>\n"
+"                                <th>Payment Duration</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.start_date\"/>\n"
+"                                    to\n"
+"                                    <span t-field=\"doc.due_date\"/>\n"
+"\n"
+"                                </td>\n"
+"                                <th>Status</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.state\"/>\n"
+"                                </td>\n"
+"                            </tr>\n"
+"                            <tr>\n"
+"                                <th>Description</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.description\"/>\n"
+"                                </td>\n"
+"                                <th>Total Amount</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.amount_total\" t-options=\"{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.property_contract_id.currency_id}\"/>\n"
+"                                </td>\n"
+"                            </tr>\n"
+"\n"
+"                            <tr>\n"
+"                                <th>Delay Fine</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.delay_fine_amount\" t-options=\"{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.property_contract_id.currency_id}\"/>\n"
+"                                </td>\n"
+"\n"
+"                                <th>Paid Amount</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.paid_amount\" t-options=\"{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.property_contract_id.currency_id}\"/>\n"
+"                                </td>\n"
+"                            </tr>\n"
+"                            <tr>\n"
+"                                <th>Remaining Amount</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.balance_amount\" t-options=\"{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.property_contract_id.currency_id}\"/>\n"
+"                                </td>\n"
+"                                <th>Paid On</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.installment_payment_datetime\"/>\n"
+"                                </td>\n"
+"                            </tr>\n"
+"                        </table>\n"
+"\n"
+"                        <div class=\"alert alert-warning\">\n"
+"                            Pay the installment before the due date to avoid the delay fine.\n"
+"                        </div>\n"
+"\n"
+"                        Do not hesitate to contact us if you have any questions.\n"
+"                        <br/>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,body_html:real_estate_advertisement.email_template_draft_contract
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                        Hello,\n"
+"                        <t t-out=\"object.partner_id.name\"/>\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        Your\n"
+"                        <t t-out=\"object.property_for\"/>\n"
+"                        contract Ref\n"
+"                        <t t-out=\"object.name\"/>\n"
+"                        is created for the property\n"
+"                        <strong>\n"
+"                            <t t-out=\"object.property_id.name\"/>,\n"
+"                            <t t-out=\"object.main_property_id.name\"/>\n"
+"                        </strong>\n"
+"                        and ready for review.\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        Do not hesitate to contact us if you have any questions.\n"
+"                        <br/>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,body_html:real_estate_advertisement.mail_template_contract_installment_paid_ack
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <t t-set=\"doc\" t-value=\"object\"/>\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 12px;\">\n"
+"                        Hello,\n"
+"                        <t t-out=\"object.property_contract_id.partner_id.name\"/>\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        Your\n"
+"                        <t t-out=\"object.property_contract_id.property_for\"/>\n"
+"                        contract Ref\n"
+"                        <strong t-out=\"object.property_contract_id.name or ''\"/>\n"
+"                        amounting in\n"
+"                        <strong t-out=\"format_amount(object.property_contract_id.contract_total_amount_with_tax, object.property_contract_id.currency_id) or ''\"/>\n"
+"                        for the property\n"
+"                        <strong>\n"
+"                            <t t-out=\"object.property_contract_id.property_id.name\"/>,\n"
+"                            <t t-out=\"object.property_contract_id.main_property_id.name\"/>\n"
+"                        </strong>\n"
+"                        has received a payment for the installment #<span t-field=\"doc.sequence\"/>.\n"
+"\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        <h2>Installment Detail:\n"
+"                            <h5>Installment\n"
+"                                #\n"
+"\n"
+"                            </h5>\n"
+"                        </h2>\n"
+"                        <table class=\"table table-sm\">\n"
+"                            <tr>\n"
+"                                <th>Payment Duration</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.start_date\"/>\n"
+"                                    to\n"
+"                                    <span t-field=\"doc.due_date\"/>\n"
+"\n"
+"                                </td>\n"
+"                                <th>Status</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.state\"/>\n"
+"                                </td>\n"
+"                            </tr>\n"
+"                            <tr>\n"
+"                                <th>Description</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.description\"/>\n"
+"                                </td>\n"
+"                                <th>Total Amount</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.amount_total\" t-options=\"{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.property_contract_id.currency_id}\"/>\n"
+"                                </td>\n"
+"                            </tr>\n"
+"\n"
+"                            <tr>\n"
+"                                <th>Delay Fine</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.delay_fine_amount\" t-options=\"{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.property_contract_id.currency_id}\"/>\n"
+"                                </td>\n"
+"\n"
+"                                <th>Paid Amount</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.paid_amount\" t-options=\"{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.property_contract_id.currency_id}\"/>\n"
+"                                </td>\n"
+"                            </tr>\n"
+"                            <tr>\n"
+"                                <th>Remaining Amount</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.balance_amount\" t-options=\"{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.property_contract_id.currency_id}\"/>\n"
+"                                </td>\n"
+"                                <th>Paid On</th>\n"
+"                                <td>\n"
+"                                    <span t-field=\"doc.installment_payment_datetime\"/>\n"
+"                                </td>\n"
+"                            </tr>\n"
+"                        </table>\n"
+"\n"
+"                        <div class=\"alert alert-success\">\n"
+"                            Payment successful for the installment\n"
+"                        </div>\n"
+"\n"
+"                        Do not hesitate to contact us if you have any questions.\n"
+"                        <br/>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid ""
+"<em>\n"
+"                                        If the total payment is paid in installments, then you have to pay some extra\n"
+"                                        amount.\n"
+"                                    </em>"
+msgstr ""
+"< em >\n"
+"إذا تم دفع إجمالي الدفعة على أقساط، فعليك دفع بعض المبالغ الإضافية\n"
+"مبلغ.\n"
+"</em >"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid ""
+"<span class=\"badge badge-pill badge-success\">\n"
+"                                                        Active\n"
+"                                                    </span>"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid ""
+"<span class=\"badge badge-pill badge-warning\">\n"
+"                                                        Upcoming\n"
+"                                                    </span>"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+msgid ""
+"<span>_________________________</span>\n"
+"                            <br/>\n"
+"                            <span>Authorize Signature</span>"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_kanban
+msgid "<strong>Address:</strong>"
+msgstr "<strong>العنوان:</strong>"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "<strong>Total Contract Amount</strong>"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "<strong>Total Due Amount</strong>"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_emi_payment_wizards
+msgid "About Payments"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_needaction
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_needaction
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_needaction
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_needaction
+msgid "Action Needed"
+msgstr "الإجراءات اللازمة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__is_active
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_rent_offer__state__active
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_sale_offer__state__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__activity_ids
+msgid "Activities"
+msgstr "النشاطات"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.mail_activity_type_action_config_real_estate
+#: model:ir.ui.menu,name:real_estate_advertisement.real_estate_menu_config_activity_type
+msgid "Activity Types"
+msgstr "انواع الانشطة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__main_property_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Address"
+msgstr "العنوان"
+
+#. module: real_estate_advertisement
+#: model:res.groups,name:real_estate_advertisement.group_real_estate_manager
+msgid "Administrator"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid ""
+"After\n"
+"                        Applying Installment Scheme"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "After Applying Installment Scheme"
+msgstr "بعد تطبيق نظام الأقساط"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__all_valid_rent_offer_ids
+msgid "All Valid Rent Offer"
+msgstr "جميع عروض الإيجار الصالحة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__all_valid_sale_offer_ids
+msgid "All Valid Sale Offer"
+msgstr "جميع عروض البيع الصالحة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.installment_table
+msgid "Amount"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_amount_installment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_account_bank_statement_line__amount_installment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_account_move__amount_installment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_account_payment__amount_installment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__amount_installment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__amount_installment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__amount_installment_ids
+msgid "Amount Installment"
+msgstr "مبلغ التقسيط"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__amount_total
+msgid "Amount Total"
+msgstr "المبلغ الاجمال"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__apply_fine_after
+msgid "Apply Fine After"
+msgstr "ضع غرامة بعد"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Apply Offer"
+msgstr "تطبيق العرض"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Are you sure to make the property available?"
+msgstr "هل أنت متأكد من جعل الممتلكات متاحة؟"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__area_uom_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__area_uom
+msgid "Area Uom"
+msgstr "وحدة قياس المنطقة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__area_uom_category_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__area_uom_category
+msgid "Area Uom Category"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__attachment_ids
+msgid "Attachment"
+msgstr "مرفق"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_attachment_count
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_attachment_count
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_attachment_count
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__availability
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__availability
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__availability
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Availability"
+msgstr "متوفرة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__main_property_property__state__available
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__state__available
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+msgid "Available"
+msgstr "متاح"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Available From"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Avatar"
+msgstr "صورة رمزية"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__balconies
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Balconies"
+msgstr "شرفة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__bathroom
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Bathroom"
+msgstr "حمام"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__bedrooms
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Bedrooms"
+msgstr "غرف نوم"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Buyer Details"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Buyer Details (Second Party)"
+msgstr "تفاصيل المشتري (الطرف الثاني)"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__payment_paid__installment
+msgid "By Installment"
+msgstr "بالتقسيط"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_emi_payment_wizards_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_installment_wizards_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Cancel"
+msgstr "الغاء"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__state__cancelled
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
+msgid "Cancelled"
+msgstr "تم إلغاؤه"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__child_id
+msgid "Children Categories"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__city
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__city
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "City"
+msgstr "المدينة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__partner_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Client"
+msgstr "العميل"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__color
+msgid "Color"
+msgstr "لون"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__garden_type__common
+msgid "Common"
+msgstr "مشتركة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__company_id
+msgid "Company"
+msgstr "شركة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__payment_paid__all
+msgid "Complete"
+msgstr "اكتمل"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__config_installment_id
+msgid "Config Installment"
+msgstr "تهيئة أقساط"
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_res_config_settings
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات "
+
+#. module: real_estate_advertisement
+#: model:ir.ui.menu,name:real_estate_advertisement.configuration_menu
+msgid "Configuration"
+msgstr "التهيئة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Confirm"
+msgstr "موافقة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Confirmation Date"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__confirmation_datetime
+msgid "Confirmation Datetime"
+msgstr "تاريخ التأكيد"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__state__confirmed
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
+msgid "Confirmed"
+msgstr "مؤكدة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__contact_address
+msgid "Contact Address"
+msgstr "عنوان الإتصال"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_kanban
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_kanban
+msgid "Contact image"
+msgstr "صورة الاتصال"
+
+#. module: real_estate_advertisement
+#: model:ir.ui.menu,name:real_estate_advertisement.contract_menu_main
+msgid "Contract"
+msgstr "عقد"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__contract_complete_date
+msgid "Contract Complete Date"
+msgstr "تاريخ اكتمال العقد"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__state__sent
+msgid "Contract Sent"
+msgstr "اُرسل العقد"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__contract_start_date
+msgid "Contract Start Date"
+msgstr "تاريخ بدء العقد"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__contract_total_amount_with_tax
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Contract Total Amount With Tax"
+msgstr "إجمالي مبلغ العقد مع الضرائب"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__country_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__country_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "Country"
+msgstr "الدولة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Create Contract"
+msgstr "انشاء عقد"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_installment_wizards_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Create Installment"
+msgstr "انشاء قسط"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_amount_installment_tree
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_emi_payment_wizards_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Create Invoice"
+msgstr "انشاء فاتورة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__create_uid
+msgid "Created by"
+msgstr "انشء بواسطة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__create_date
+msgid "Created on"
+msgstr "انشئ في"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__currency_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__currency_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__currency_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__currency_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__currency_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__currency_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__currency_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_rent_offer_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_sale_offer_search
+msgid "Customer Name"
+msgstr "اسم العميل"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__date_availability
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__date_availability
+msgid "Date Availability"
+msgstr "تاريخ التوفر"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__config_installment__from_delay__day
+msgid "Day"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_config_installment_form
+msgid "Day(s)"
+msgstr "ايام"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__responsible_person_is__dealer
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Dealer"
+msgstr "بائع"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Dealer / Owner Details"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__amount_installment__state__delay
+msgid "Delay"
+msgstr "تأخير"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__delay_fine_amount
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.installment_table
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+msgid "Delay Fine"
+msgstr "غرامة تأخير"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__delay_fine
+msgid "Delay Fine % On Total Payable"
+msgstr "غرامة التأخير٪ على إجمالي الدفع"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_emi_payment_wizards_form
+msgid "Delay Fine on Amount"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__description
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__doc_description
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__description
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__description
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__description
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.installment_table
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Description"
+msgstr "وصف"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__doc_type
+msgid "Doc Type"
+msgstr "نوع المستند"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__document_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__document_ids
+msgid "Document"
+msgstr "وثيقة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Document Image"
+msgstr "مستند الصورة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Document PDF"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Documents"
+msgstr "مستندات"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__state__done
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Done"
+msgstr "تم"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__down_payment
+msgid "Down Payment"
+msgstr "الدفعة الأولى"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__down_payment_amount
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Down Payment Amount"
+msgstr "مبلغ الدفعة الاولى"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__down_payment_in_word
+msgid "Down Payment In Words"
+msgstr "الدفعة الاولى كتابة"
+
+#. module: real_estate_advertisement
+#: code:addons/real_estate_advertisement/wizards/installment.py:0
+#, python-format
+msgid "Down payment should not be greater than Total Amount."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__state__draft
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__due_date
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.installment_table
+msgid "Due Date"
+msgstr "تاريخ الاستحقاق"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__duration
+msgid "Duration"
+msgstr "مدة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__duration_unit
+msgid "Duration Unit"
+msgstr "وحدة المدة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__monthly_emi
+msgid "EMI"
+msgstr "القسط الشهري المعادل"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_config_installment_form
+msgid "EMI installment"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__email
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Email"
+msgstr "البريد الالكتروني"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_emi_payment_wizards_id
+msgid "Emi Payment Wizards"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__end_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__end_date
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "End Date"
+msgstr "تاريخ الانتهاء"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__expected_price
+msgid "Expected Price"
+msgstr "السعر المتوقع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_rent_offer__state__expired
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_sale_offer__state__expired
+msgid "Expired"
+msgstr "منتهي الصلاحية"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__extra_percentage
+msgid "Extra % On Total Payable"
+msgstr "نسبة مئوية إضافية على إجمالي المبلغ المستحق الدفع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__facing_direction
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Facing Direction"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__fine_on_paid_amount
+msgid "Fine On Paid Amount"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__floor
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Floor"
+msgstr "الطابق"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_follower_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_follower_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_follower_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_follower_ids
+msgid "Followers"
+msgstr "متابعون"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_partner_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_partner_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_partner_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "For"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_uom_category__for_property_area
+msgid "For Property Area"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__availability__from_date
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__availability__from_date
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_search__availability__from_date
+msgid "From Date"
+msgstr "من تاريخ"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__from_delay
+msgid "From Delay"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__fully_invoiced
+msgid "Fully Invoiced"
+msgstr "مفوتر بالكامل"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__furnishing__fully_furnished
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_search__furnishing__fully_furnished
+msgid "Fully-Furnished"
+msgstr "مؤثثة بالكامل"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__furnishing
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__furnishing
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Furnishing"
+msgstr "تأثيث"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__garage
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__garage
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+msgid "Garage"
+msgstr "كراج"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__garden
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__garden
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+msgid "Garden"
+msgstr "حديقة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__garden_area
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__garden_area
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Garden Area"
+msgstr "منطقة الحديقة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__garden_orientation
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__garden_orientation
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Garden Orientation"
+msgstr "اتجاه الحديقة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__garden_type
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Garden Type"
+msgstr "نوع الحديقة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_rent_offer_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_sale_offer_search
+msgid "Group By"
+msgstr "تجميع بواسطة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__installment_option
+msgid "Has Installment Options"
+msgstr "لديه خيارات التقسيط"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__has_message
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__has_message
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__has_message
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__has_message
+msgid "Has Message"
+msgstr "رسالة"
+
+#. module: real_estate_advertisement
+#: model:ir.module.category,description:real_estate_advertisement.module_category_real_estate
+msgid "Helps you handle your real estate."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__id
+msgid "ID"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,help:real_estate_advertisement.field_amount_installment__message_needaction
+#: model:ir.model.fields,help:real_estate_advertisement.field_amount_installment__message_unread
+#: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__message_needaction
+#: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__message_unread
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_needaction
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_unread
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_needaction
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,help:real_estate_advertisement.field_amount_installment__message_has_error
+#: model:ir.model.fields,help:real_estate_advertisement.field_amount_installment__message_has_sms_error
+#: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__message_has_error
+#: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__message_has_sms_error
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_has_error
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_has_sms_error
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_has_error
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid ""
+"If the value is provided in the field, then it will be used as a search "
+"criteria."
+msgstr "إذا تم توفير القيمة في الحقل، فسيتم استخدامها كمعايير بحث."
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__image
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__image
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_document__doc_type__image
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Image"
+msgstr "صورة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__image_file_data
+msgid "Image File Data"
+msgstr "بيانات ملف الصورة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Image Gallery"
+msgstr "معرض الصور"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__image_gallery_doc_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__image_gallery_doc_ids
+msgid "Image Gallery Doc"
+msgstr "معرض صور - مستند"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__availability__immediately
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__availability__immediately
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_search__availability__immediately
+msgid "Immediately"
+msgstr "في الحال"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__state__in_contract
+msgid "In Contract"
+msgstr "في العقد"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_rent_offer__state__inactive
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_sale_offer__state__inactive
+msgid "Inactive"
+msgstr "غير نشط"
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_property_installment_wizards
+#: model:ir.ui.menu,name:real_estate_advertisement.Installment_menu
+msgid "Installment"
+msgstr "الاقساط"
+
+#. module: real_estate_advertisement
+#: model:mail.template,report_name:real_estate_advertisement.mail_template_contract_installment_paid_ack
+#: model:mail.template,report_name:real_estate_advertisement.mail_template_contract_installment_reminder
+msgid ""
+"Installment # {{object.sequence}} {{ (object.property_contract_id.name "
+"or'').replace('/','_') }}"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: code:addons/real_estate_advertisement/models/amount_installment.py:0
+#, python-format
+msgid "Installment #%s"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_config_installment
+msgid "Installment Configuration"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__installment_option
+msgid "Installment Option"
+msgstr "خيار التقسيط"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__installment_payment_datetime
+msgid "Installment Payment Datetime"
+msgstr "تاريخ دفع الأقساط"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.report,name:real_estate_advertisement.action_report_contract_installment
+msgid "Installment Receipt"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__config_installment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__installment_scheme_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__config_installment_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Installment Scheme"
+msgstr "مخطط التقسيط"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_config_installment_id
+msgid "Installment Schemes"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+msgid "Installment#"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Installments"
+msgstr "الاقساط"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Installments Details"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__invoice_ids
+msgid "Invoice"
+msgstr "فاتورة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__invoice_date
+msgid "Invoice Date"
+msgstr "تاريخ الفاتورة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__invoice_id
+msgid "Invoice for Complete Payment"
+msgstr "فاتورة الدفع الكامل"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_is_follower
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_is_follower
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_is_follower
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_is_follower
+msgid "Is Follower"
+msgstr "تابع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__is_rental_security_amount_line
+msgid "Is Rental Security Amount Line"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__journal_id
+msgid "Journal"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_account_move
+msgid "Journal Entry"
+msgstr "قيد اليومية"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp____last_update
+msgid "Last Modified on"
+msgstr "اخر تعديل بواسطة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__write_uid
+msgid "Last Updated by"
+msgstr "اخر تحديث في"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__write_date
+msgid "Last Updated on"
+msgstr "اخر تحديث في"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__living_area
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__living_area_min
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+msgid "Living Area"
+msgstr "منطقة المعيشة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__living_area_max
+msgid "Living Area Max"
+msgstr "الحد الاقصى للمنطقة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "Living Area Range"
+msgstr "مساحة المنطقة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "Location"
+msgstr "الموقع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__amount_with_tax
+msgid "Main Amount"
+msgstr "المبلغ الرئيسي"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_main_attachment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_main_attachment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_main_attachment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Main Highlights"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_main_property_property_id
+msgid "Main Properties"
+msgstr "القائمة الرئيسية"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__main_property_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__main_property_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__main_property_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__main_property_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__main_property_id
+#: model:ir.ui.menu,name:real_estate_advertisement.main_property_menu
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_rent_offer_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_sale_offer_search
+msgid "Main Property"
+msgstr "عقار رئيسي"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__main_property_image_id
+msgid "Main Property Image"
+msgstr "صورة العقار الرئيسي"
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_main_property_property
+msgid "Main Real Estate Property"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__state__maintenance
+msgid "Maintenance"
+msgstr "صيانة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Make Available"
+msgstr "جعلها متاحة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__maximum_price
+msgid "Maximum Price"
+msgstr "اعلى سعر"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__message
+msgid "Message"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_has_error
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_has_error
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_has_error
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__minimum_price
+msgid "Minimum Price"
+msgstr "اقل سعر"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__minimum_rent_duration
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__minimum_rent_duration
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_rent_offer_form_view
+msgid "Minimum Rent Duration"
+msgstr "الحد الأدنى لمدة الإيجار"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__minimum_rent_duration_uom
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__minimum_rent_duration_uom
+msgid "Minimum Rent Duration Uom"
+msgstr "الحد الأدنى لمدة الإيجار"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__config_installment__from_delay__month
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__minimum_rent_duration_uom__month
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__rent_uom__month
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__rent_uom__month
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_rent_offer__duration_unit__month
+msgid "Month"
+msgstr "شهر"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__minimum_rent_duration_uom__month
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__rent_duration_uom__month
+msgid "Month(s)"
+msgstr "شهر"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
+msgid "My Contracts"
+msgstr "عقودي"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+msgid "My Property"
+msgstr "عقاري"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__name
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Name"
+msgstr "الاسم"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__state__new
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+msgid "New"
+msgstr "جديد"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__transaction__new
+msgid "New Property"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__no_of_installment
+msgid "No Of Installment"
+msgstr "رقم التقسيط"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__main_property_property__state__not_available
+msgid "Not Available"
+msgstr "غير متاح"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_needaction_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_needaction_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_needaction_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_has_error_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_has_error_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_has_error_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,help:real_estate_advertisement.field_amount_installment__message_needaction_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__message_needaction_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_needaction_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,help:real_estate_advertisement.field_amount_installment__message_has_error_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__message_has_error_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_has_error_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,help:real_estate_advertisement.field_amount_installment__message_unread_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__message_unread_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_unread_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Offer Applied"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_rent_offer_form_view
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_sale_offer_form_view
+msgid "Offer Duration"
+msgstr "مدة العرض"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__offer_info_message
+msgid "Offer Info Message"
+msgstr "عرض رسالة معلومات"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_rent_offer_form_view
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_sale_offer_form_view
+msgid "Offer Name e.g. New Year Offer"
+msgstr "اسم العرض على سبيل المثال عرض العام الجديد"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__offer_price
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__offer_price
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Offer Price"
+msgstr "سعر العرض"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__offer
+msgid "Offers"
+msgstr "عروض"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "Offers Available"
+msgstr "العروض المتوفرة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__state__on_rent
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "On Rent"
+msgstr "للاجار"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__responsible_person_is__owner
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Owner"
+msgstr "مالك"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_document__doc_type__pdf
+msgid "PDF"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__amount_installment__state__paid
+msgid "Paid"
+msgstr "مدفوع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__paid_amount
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__paid_amount
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.installment_table
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+msgid "Paid Amount"
+msgstr "المبلغ المدفوع"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+msgid "Paid On"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: code:addons/real_estate_advertisement/wizards/payment.py:0
+#, python-format
+msgid "Paid amount always less than Total Amount."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__parent_id
+msgid "Parent Category"
+msgstr "الفئة الام"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__parent_path
+msgid "Parent Path"
+msgstr "مسار الفئة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__parents_and_self
+msgid "Parents And Self"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__amount_installment__state__partial
+msgid "Partial Paid"
+msgstr "دفع جزئي"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__partner_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__partner_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__partner_id
+msgid "Partner"
+msgstr "الشريك"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid ""
+"Payment\n"
+"                    Details"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.installment_table
+msgid "Payment Date"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Payment Details"
+msgstr "تفاصيل الدفع"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+msgid "Payment Duration"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Payment Reminder"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__payment_paid
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Payment to Pay"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__pdf_file_data
+msgid "Pdf File Data"
+msgstr "بيانات ملف PDF"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__garden_type__personal
+msgid "Personal"
+msgstr "شخصية"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__pet_allowed
+msgid "Pet Allowed"
+msgstr "مسموح اصطحاب الحيوان"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__phone
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Phone"
+msgstr "هاتف"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Price"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "Price Range"
+msgstr "نطاق السعر"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_kanban
+msgid "Price:"
+msgstr "سعر:"
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_uom_category
+msgid "Product UoM Categories"
+msgstr "فئات وحدات قياس المنتج"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_property_property_id
+#: model:ir.ui.menu,name:real_estate_advertisement.properties_menu
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+msgid "Properties"
+msgstr "عقارات"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_property_property_contract_id
+msgid "Properties Contract"
+msgstr "عقد العقارات"
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_property_property
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__property_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__property_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__property_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__property_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__property_ids
+#: model:ir.ui.menu,name:real_estate_advertisement.property_property_menu
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_rent_offer_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_sale_offer_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "Property"
+msgstr "عقار"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid ""
+"Property\n"
+"                    Details"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+msgid "Property Address"
+msgstr "عنوان العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__date_availability
+msgid "Property Availability Date"
+msgstr "تاريخ توفر العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.report,name:real_estate_advertisement.action_report_property_brochure
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Property Brochure"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.actions.report,name:real_estate_advertisement.action_report_property_contract
+#: model:ir.model,name:real_estate_advertisement.model_property_property_contract
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__property_contract_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__property_contract_id
+msgid "Property Contract"
+msgstr "عقد الاجار"
+
+#. module: real_estate_advertisement
+#: model:mail.template,subject:real_estate_advertisement.email_template_draft_contract
+#: model:mail.template,subject:real_estate_advertisement.mail_template_contract_confirmation
+#: model:mail.template,subject:real_estate_advertisement.mail_template_contract_done
+msgid "Property Contract : Ref {{ object.name or 'n/a' }}"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,subject:real_estate_advertisement.mail_template_contract_installment_paid_ack
+msgid ""
+"Property Contract : {{ object.property_contract_id.name or 'n/a' }} "
+"#{{object.sequence}} Payment Acknowledgement"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,subject:real_estate_advertisement.mail_template_contract_installment_reminder
+msgid ""
+"Property Contract : {{ object.property_contract_id.name or 'n/a' }} "
+"#{{object.sequence}} Reminder"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.message.subtype,description:real_estate_advertisement.mt_contract_done
+msgid "Property Contract Completed"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.message.subtype,name:real_estate_advertisement.mt_contract_confirmed
+msgid "Property Contract Confirmed"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.message.subtype,name:real_estate_advertisement.mt_contract_done
+msgid "Property Contract Done"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.actions.server,name:real_estate_advertisement.ir_cron_installment_payment_reminder_ir_actions_server
+#: model:ir.cron,cron_name:real_estate_advertisement.ir_cron_installment_payment_reminder
+#: model:ir.cron,name:real_estate_advertisement.ir_cron_installment_payment_reminder
+msgid "Property Contract Installment: Reminder Email"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.message.subtype,description:real_estate_advertisement.mt_contract_confirmed
+msgid "Property Contract confirmed"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,name:real_estate_advertisement.mail_template_contract_confirmation
+msgid "Property Contract: Confirmation Email"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,name:real_estate_advertisement.mail_template_contract_done
+msgid "Property Contract: Done Email"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,name:real_estate_advertisement.mail_template_contract_installment_reminder
+msgid "Property Contract: Installment Reminder Email"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,name:real_estate_advertisement.mail_template_contract_installment_paid_ack
+msgid "Property Contract: Paid Installment Acknowledgement Email"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.ui.menu,name:real_estate_advertisement.contract_menu
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_graph
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_pivot
+msgid "Property Contracts"
+msgstr "عقود العقارات"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__description
+msgid "Property Description"
+msgstr "وصف العقار"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Property Details"
+msgstr "تفاصيل الملكية"
+
+#. module: real_estate_advertisement
+#: model:mail.template,name:real_estate_advertisement.email_template_draft_contract
+msgid "Property Draft Contract: Send by email"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__property_for
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__property_for
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__property_for
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+msgid "Property For"
+msgstr "العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_document__property_image_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Property Image"
+msgstr "صورة العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_amount_installment
+msgid "Property Installment Amount"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__property_name
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+msgid "Property Name"
+msgstr "اسم العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__property_offer_price
+msgid "Property Offer Price"
+msgstr "سعر عرض العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__property_owner_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__property_owner_id
+msgid "Property Owner"
+msgstr "صاحب العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_property_search_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "Property Quick Search"
+msgstr " البحث السريع عن العقار "
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_property_rent_offer
+#: model:ir.ui.menu,name:real_estate_advertisement.property_rent_offer_menu
+msgid "Property Rent Offers"
+msgstr "عروض إيجار العقارات"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__property_rent_price
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Property Rent Price"
+msgstr "سعر إيجار العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_property_sale_offer
+#: model:ir.ui.menu,name:real_estate_advertisement.property_sale_offer_menu
+msgid "Property Sale Offers"
+msgstr "عروض بيع العقارات"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__property_selling_price
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Property Selling Price"
+msgstr "سعر بيع العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_property_type_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__property_type_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__property_type_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__property_type_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+msgid "Property Type"
+msgstr "نوع العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.ui.menu,name:real_estate_advertisement.property_type_menu
+msgid "Property Types"
+msgstr "نوع العقار"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+msgid "Property USPs"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__property_usp_ids
+msgid "Property Usp"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_property_search
+msgid "Property search"
+msgstr "البحث عن عقار"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Purchase"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Put On Maintenance"
+msgstr "ضع على الصيانة"
+
+#. module: real_estate_advertisement
+#: model:ir.ui.menu,name:real_estate_advertisement.search_menu
+msgid "Quick Search"
+msgstr "بحث سريع"
+
+#. module: real_estate_advertisement
+#: model:ir.module.category,name:real_estate_advertisement.module_category_real_estate
+#: model:ir.ui.menu,name:real_estate_advertisement.real_state_menu
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Real Estate"
+msgstr "مبيعات العقارات"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__reception
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Reception"
+msgstr "استقبال"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__name
+msgid "Ref#."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__remain_amount
+msgid "Remain Amount"
+msgstr "المبلغ المتبقي"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__balance_amount
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.installment_table
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+msgid "Remaining Amount"
+msgstr "الكمية المتبقية"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_res_config_settings__remind_before
+msgid "Remind Before"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_res_config_settings__remind_every_day_after_due_date
+msgid "Remind Every Day After Due Date"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_res_config_settings__remind_on_due_date
+msgid "Remind On Due Date"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__config_installment__use_for__rent
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_installment_wizards__use_for__rent
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__property_for__rent
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_search__property_for__rent
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Rent"
+msgstr "تأجير"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid ""
+"Rent\n"
+"                        Installments Details"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__client_expected_rent_duration
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Rent Duration"
+msgstr "مدة الاجار"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__rent_duration_uom
+msgid "Rent Duration Uom"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__rent_offer_id
+msgid "Rent Offer"
+msgstr "عرض الاجار"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Rent Offers"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__rent_price
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__rent_price
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Rent Price"
+msgstr "سعر التأجير"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__rent_uom
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__rent_uom
+msgid "Rent Uom"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Rent offer"
+msgstr "عرض الإيجار"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__payment_paid__rental_installment
+msgid "Rental Installment"
+msgstr "قسط الاجار"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Rental Installments"
+msgstr "عقود التأجير"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Rental Pricing Details"
+msgstr "تفاصيل تسعير الإيجار"
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_ir_actions_report
+msgid "Report Action"
+msgstr "إجراء التقرير"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__transaction__resale
+msgid "Resale"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "Reset"
+msgstr "اعادة تعيين"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__responsible_person_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__responsible_person_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
+msgid "Responsible Person"
+msgstr "الشخص المسؤل"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__responsible_person_is
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__responsible_person_is
+msgid "Responsible Person Is"
+msgstr "الشخص المسؤل هو"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__activity_user_id
+msgid "Responsible User"
+msgstr "مستخدم مسؤول"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_has_sms_error
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_has_sms_error
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_has_sms_error
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__config_installment__use_for__sale
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_installment_wizards__use_for__sale
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__property_for__sale
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_search__property_for__sale
+msgid "Sale"
+msgstr "بيع"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Sale Offers"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__sale_offer_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Sale offer"
+msgstr "عرض البيع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__name
+msgid "Scheme Name"
+msgstr "اسم المخطط"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "Search"
+msgstr "بحث"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "Search results"
+msgstr "نتائج البحث"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__security_deposit_amount
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__security_deposit_amount
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Security Deposit Amount"
+msgstr "مبلغ التأمين"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Seller Details"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Seller Details (First Party)"
+msgstr "تفاصيل البائع (الطرف الأول)"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__selling_price
+msgid "Selling Price"
+msgstr "سعر البيع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__furnishing__semi_furnished
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_search__furnishing__semi_furnished
+msgid "Semi-Furnished"
+msgstr "شبه مؤثث"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_res_config_settings__send_contract_payment_reminder
+msgid "Send Contract Payment Reminder"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Send by Email"
+msgstr "ارسال بواسطة البريد الالكتروني"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Send payment reminder email before due date for installment"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Send payment reminder email every day after due date for installment"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Send payment reminder email on due date for installment"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Send reminder before"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Send reminder email after due date"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Send reminder email before  start date"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Send reminder email before due date"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Send reminder email before payment start date for installment"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.res_config_settings_view_form
+msgid "Send reminder email on due date"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__sequence
+msgid "Sequence"
+msgstr "تسلسل"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_real_estate_settings
+#: model:ir.ui.menu,name:real_estate_advertisement.menu_real_estate_settings
+msgid "Settings"
+msgstr "الاعدادات"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__state__sold
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "Sold"
+msgstr "مباع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__start_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__start_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__start_date
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Start Date"
+msgstr "تاريخ البدأ"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__state
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__state_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__state
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__state
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__state
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__state
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__state_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "State"
+msgstr "الحالة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
+msgid "States"
+msgstr "حالات"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__state
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_kanban
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_tree
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_tree
+msgid "Status"
+msgstr "حالة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+msgid "Street 2..."
+msgstr "شارع 2"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+msgid "Street..."
+msgstr "شارع ..."
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__street
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__street2
+msgid "Street1"
+msgstr "شارع1"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Structural Description"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__super_area
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Super Area"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__tax_amount
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__tax_amount
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_emi_payment_wizards_form
+msgid "Tax Amount"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__tax_ids
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Taxes"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__preferred_tenant
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Tenants Preferred"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_emi_payment_wizards__total_amount
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__total_amount
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_emi_payment_wizards_form
+msgid "Total Amount"
+msgstr "مجموع المبلغ"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_installment_wizards_form
+msgid "Total Amount With Tax"
+msgstr "اجمالي المبلغ مع الضريبة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__total_emi_amount
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Total Contract Amount"
+msgstr "مجموع مبلغ العقد"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__remaining_balance
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Total Due Amount"
+msgstr "مجموع المبالغ المستحقة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__no_of_installment
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "Total Number Of Installments"
+msgstr "إجمالي عدد الأقساط"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__paid_installment_emi
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
+msgid "Total Paid Amount"
+msgstr "اجمالي المبلغ المدفوع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__installment_amount
+msgid "Total Remaining Payable Amount With Interest"
+msgstr "إجمالي المبلغ المتبقي المستحق مع الفائدة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__transaction
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
+msgid "Transaction"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__furnishing__unfurnished
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_search__furnishing__unfurnished
+msgid "Unfurnished"
+msgstr "غير مؤثثة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+msgid "Unique Selling Points"
+msgstr "نقاط بيع مميزة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__amount_installment__state__unpaid
+msgid "Unpaid"
+msgstr "غير مدفوع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_unread
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_unread
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_unread
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_unread
+msgid "Unread Messages"
+msgstr "رسائل غير مقروءة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_unread_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_unread_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_unread_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__untaxed_amount
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_emi_payment_wizards_form
+msgid "Untaxed Amount"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__untaxed_total_amount
+msgid "Untaxed Total Amount"
+msgstr "المبلغ الاجمالي بدون ضريبة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__use_for
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__use_for
+msgid "Use For"
+msgstr "يسخدم من اجل"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__user_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__user_id
+msgid "User"
+msgstr "مستخدم"
+
+#. module: real_estate_advertisement
+#: model:res.groups,name:real_estate_advertisement.group_real_estate_user
+msgid "User: Own Documents Only"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
+msgid "View Contracts"
+msgstr "عرض العقود"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_amount_installment_tree
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
+msgid "View Invoice"
+msgstr "عرض الفاتورة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__website_message_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__website_message_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__website_message_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,help:real_estate_advertisement.field_amount_installment__website_message_ids
+#: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__website_message_ids
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property__website_message_ids
+#: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__config_installment__from_delay__week
+msgid "Week"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_rent_offer__duration_unit__year
+msgid "Year"
+msgstr "سنة"
+
+#. module: real_estate_advertisement
+#: code:addons/real_estate_advertisement/models/contract_property.py:0
+#, python-format
+msgid ""
+"You can not delete a confirmed or a done contract. You must first cancel it."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
+msgid "ZIP"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__zip
+msgid "Zip"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_kanban
+msgid "for"
+msgstr "الى"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_installment_wizards_form
+msgid "message"
+msgstr "رسالة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__property_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__contract_property_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__rent_offer_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__sale_offer_ids
+msgid "property Details"
+msgstr "تفاصيل العقار"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.action_property_installment_wizards_id
+msgid "property Installment Wizards"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_property_document
+msgid "property.document"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_property_rent_offer
+msgid "property.rent.offer"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_property_sale_offer
+msgid "property.sale.offer"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_property_type
+msgid "property.type"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_property_usp
+msgid "property.usp"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:res.groups,comment:real_estate_advertisement.group_real_estate_user
+msgid ""
+"the user will have access to his own data in the real estate application."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:res.groups,comment:real_estate_advertisement.group_real_estate_manager
+msgid "the user will have an access to the real estate configuration."
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_rent_offer_form_view
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_sale_offer_form_view
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "to"
+msgstr "الى"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
+msgid "view"
+msgstr "عرض"
+
+#. module: real_estate_advertisement
+#: model:mail.template,report_name:real_estate_advertisement.email_template_draft_contract
+#: model:mail.template,report_name:real_estate_advertisement.mail_template_contract_confirmation
+#: model:mail.template,report_name:real_estate_advertisement.mail_template_contract_done
+msgid "{{ (object.name or '').replace('/','_') }}"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.actions.act_window,help:real_estate_advertisement.action_main_property_property_id
+#: model_terms:ir.actions.act_window,help:real_estate_advertisement.action_property_property_contract_id
+#: model_terms:ir.actions.act_window,help:real_estate_advertisement.action_property_property_id
+msgid "إنشاء مستند جديد"
+msgstr ""

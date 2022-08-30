@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="project_real_view_tree" model="ir.ui.view">
+            <field name="name">_view_tree</field>
+            <field name="model">real.project</field>
+            <field name="arch" type="xml">
+                <tree string="_tree">
+                    <field name="name" optional="show"/>
+                    <field name="street" optional="hide"/>
+                    <field name="street2" optional="hide"/>
+                    <field name="city" optional="hide"/>
+                    <field name="state_id" optional="show"/>
+                    <field name="country_id" optional="show"/>
+                    <field name="cost" optional="show"/>
+                    <field name="area" optional="hide"/>
+                    <field name="analytic_acounting_id" optional="show"/>
+                    <field name="partner_id" optional="show"/>
+                </tree>
+            </field>
+        </record>
+        <record id="project_real_view_form" model="ir.ui.view">
+            <field name="name">_view_form</field>
+            <field name="model">real.project</field>
+            <field name="arch" type="xml">
+                <form string="_form">
+                    <sheet>
+                        <h2><field name="name" required="1"/></h2>
+                        <group>
+                            <group>
+
+                                  <span class="o_form_label o_td_label" name="address_name">
+                               
+                                <b  >Address</b>
+                            </span>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street" />
+                                <field name="street2" placeholder="Street 2..." class="o_address_street" />
+                                <field name="city" placeholder="City" class="o_address_city" />
+                                <field name="state_id" class="o_address_state" placeholder="State" options="{'no_open': True, 'no_quick_create': True}"  context="{'country_id': country_id, 'default_country_id': country_id}"/>
+                                
+                                <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+                            </div>
+
+
+                            </group>
+                            <group>
+                                <field name="country_id"/>
+                                <field name="cost"/>
+                                <field name="area"/>
+                                <field name="analytic_acounting_id"/>
+                                <field name="partner_id" required="1"/>
+
+                            </group>
+                        </group>
+                        <group>
+                            <field name="main_property_ids"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="real_state_action" model="ir.actions.act_window">
+            <field name="name">Project</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">real.project</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_project_real" name="Project" parent="real_state_menu" action="real_state_action" sequence="1"/>
+    </data>
+</odoo>

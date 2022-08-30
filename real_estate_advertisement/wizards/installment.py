@@ -26,10 +26,17 @@ class PropertyInstallment(models.TransientModel):
     def onchange_config_installment(self):
         self.down_payment_in_word = self.currency_id.amount_to_text(self.down_payment)
         if self.config_installment_id and self.config_installment_id.use_for == 'sale' and self.remain_amount:
-            monthly_interest_rate = self.config_installment_id.extra_percentage / (12 * 100)
+            monthly_interest_rate=0
+            if self.config_installment_id.extra_percentage>0:
+                monthly_interest_rate = self.config_installment_id.extra_percentage / (12 * 100)
             time = self.config_installment_id.no_of_installment
-            emi = self.remain_amount * monthly_interest_rate * ((1 + monthly_interest_rate) ** time) / (
-                    (1 + monthly_interest_rate) ** time - 1)
+            div=1
+            if monthly_interest_rate>0:
+                emi = self.remain_amount * monthly_interest_rate * ((1 + monthly_interest_rate) ** time) / (
+                        (1 + monthly_interest_rate) ** time - 1)
+            else:
+                emi=self.remain_amount/time
+
             self.monthly_emi = round(emi)
             self.installment_amount = self.monthly_emi * time
 
@@ -89,13 +96,15 @@ class PropertyInstallment(models.TransientModel):
                     )
                     print(tax_amount_dict)
                     tax_amount = tax_amount_dict['total_included'] - tax_amount_dict['total_excluded']
-                installment_list = [(0, 0, {
-                    "description": "Down Payment",
-                    "untaxed_amount": self.down_payment - tax_amount,
-                    "amount_with_tax": self.down_payment,
-                    "sequence": sequence,
-                    "state": "unpaid"
-                })]
+                installment_list=[]
+                if self.down_payment>0:
+                    installment_list = [(0, 0, {
+                        "description": "Down Payment",
+                        "untaxed_amount": self.down_payment - tax_amount,
+                        "amount_with_tax": self.down_payment,
+                        "sequence": sequence,
+                        "state": "unpaid"
+                    })]
 
                 print('self.monthly_emi', self.monthly_emi)
                 print('')
