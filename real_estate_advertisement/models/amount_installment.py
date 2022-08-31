@@ -6,15 +6,15 @@ from datetime import date
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
-
+from dateutil.relativedelta import relativedelta
 class AmountInstallment(models.Model):
     _name = 'amount.installment'
     _inherit = ['mail.thread']
     _description = "Property Installment Amount"
 
-    name = fields.Char()
-    sequence = fields.Integer()
-    start_date = fields.Date(string="Start Date")
+    name = fields.Char( track_visibility='onchange')
+    sequence = fields.Integer( track_visibility='onchange')
+    start_date = fields.Date(string="Start Date", track_visibility='onchange')
     due_date = fields.Date(string="Due Date")
     installment_payment_datetime = fields.Datetime()
 
@@ -81,6 +81,7 @@ class AmountInstallment(models.Model):
             # Calculate fine if due date passed and invoice is not created
             if not rec.invoice_date and rec.due_date and today_date > rec.due_date:
                 days = (today_date - rec.due_date).days
+                print(">>>>>>>>>>>>>>>>>>>",days,rec.due_date)
                 per_day_fine_percent = rec.property_contract_id.config_installment_id.delay_fine
                 if per_day_fine_percent>0:
                      per_day_fine_amount = rec.amount_with_tax * per_day_fine_percent / 100
@@ -253,7 +254,8 @@ class AmountInstallment(models.Model):
     #         else:
     #             rec.delay_fine_amount = 0
     #             rec.installment_total_with_fine = rec.amount
-
+    def diff_month(d1, d2):
+        return (d1.years - d2.years) * 12 + d1.months - d2.months
     def create_invoice(self):
         if self.property_contract_id.state!='confirmed':
             raise ValidationError("Please Confirm your contract ")
@@ -267,6 +269,18 @@ class AmountInstallment(models.Model):
         today = datetime.datetime.today().date()
         if today < self.start_date:
             raise ValidationError("Can't accept payment for the installment before the start date!")
+        print(">>>>>>>>>>>>>",(date.today() - self.due_date).days,(date.today() - self.due_date))
+        day_dely=0
+        if self.property_contract_id.config_installment_id.from_delay =='day':
+            day_dely=(date.today() - self.due_date).days
+        elif self.property_contract_id.config_installment_id.from_delay =='week':
+            day_dely = (date.today() - self.due_date).days
+            day_dely=day_dely/7
+        if self.property_contract_id.config_installment_id.from_delay =='month':
+            day_dely=relativedelta(date.today(), self.due_date).months
+
+
+
         return {
             "type": "ir.actions.act_window",
             "res_model": "emi.payment.wizards",
@@ -278,7 +292,8 @@ class AmountInstallment(models.Model):
                         "default_tax_amount": self.amount_with_tax - self.untaxed_amount,
                         "default_amount_installment_id": self.id,
                         "per_day_fine_percent": self.property_contract_id.config_installment_id.delay_fine,
-                        "delay_in_days": date.today().day - self.due_date.day,
+                        "delay_in_days": day_dely if day_dely>0 else 0,
+                        # "delay_in_days": abs(day_dely) ,
                         "date": date.today().day > self.due_date.day,
                         "default_fine_on_paid_amount": self.delay_fine_amount,
                         "invoice_date_due": self.due_date}

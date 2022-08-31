@@ -13,25 +13,25 @@ class MainProperty(models.Model):
     _inherit = ['mail.thread']
     _description = "Main Real Estate Property"
 
-    name = fields.Char(string='Property Name', required=True)
+    name = fields.Char(string='Property Name', required=True, track_visibility='onchange')
     image = fields.Binary()
-    property_type_ids = fields.Many2many('property.type')
-    description = fields.Text(string='Property Description')
+    property_type_ids = fields.Many2many('property.type', track_visibility='onchange')
+    description = fields.Text(string='Property Description', track_visibility='onchange')
     street = fields.Char(string='Street1')
     street2 = fields.Char(string='Street1')
     city = fields.Char(string='City')
     state_id = fields.Many2one('res.country.state', domain="[('country_id', '=?', country_id)]")
     zip = fields.Char(string='Zip')
-    country_id = fields.Many2one('res.country')
-    property_ids = fields.One2many('property.property', 'main_property_id', string='property Details')
+    country_id = fields.Many2one('res.country', track_visibility='onchange')
+    property_ids = fields.One2many('property.property', 'main_property_id', string='property Details', track_visibility='onchange')
     contact_address = fields.Text(compute="_compute_contact_address", store=True)
     state = fields.Selection([("available", "Available"), ("not_available", "Not Available")],
-                             compute="_compute_property_state", store=True)
+                             compute="_compute_property_state", store=True, track_visibility='onchange')
     property_usp_ids = fields.One2many("property.usp", "main_property_id")
     document_ids = fields.One2many("property.document", "main_property_id")
     image_gallery_doc_ids = fields.One2many("property.document", "main_property_image_id")
-    project_id = fields.Many2one("real.project")
-    analytic_acounting_id = fields.Many2one(related="project_id.analytic_acounting_id", string="Cost center")
+    project_id = fields.Many2one("real.project", track_visibility='onchange')
+    analytic_acounting_id = fields.Many2one(related="project_id.analytic_acounting_id", string="Cost center", track_visibility='onchange')
 
     @api.depends("property_ids.state")
     def _compute_property_state(self):

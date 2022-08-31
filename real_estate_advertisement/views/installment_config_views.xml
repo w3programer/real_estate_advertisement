@@ -31,7 +31,7 @@
                             </group>
                             <group>
                                 <field name="extra_percentage"
-                                       attrs="{'invisible': [('use_for','=','rent')], 'required':[('use_for','!=','rent')]}"/>
+                                       attrs="{'invisible': True, 'required':[('use_for','!=','rent')]}"/>
 
 
                                 <field name="is_active"/>
@@ -51,7 +51,7 @@
                 <tree>
                     <field name="name"/>
                     <field name="no_of_installment"/>
-                    <field name="extra_percentage"/>
+<!--                    <field name="extra_percentage" invisible="1"/>-->
                     <field name="delay_fine"/>
                     <field name="from_delay"/>
                     <field name="is_active"/>

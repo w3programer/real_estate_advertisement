@@ -42,6 +42,7 @@ class PropertyInstallment(models.TransientModel):
 
     @api.depends('down_payment')
     def _compute_down_payment(self):
+        self.remain_amount=0
         if self.total_amount:
             self.remain_amount = self.total_amount - self.down_payment
 

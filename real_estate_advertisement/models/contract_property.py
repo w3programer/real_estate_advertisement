@@ -15,26 +15,26 @@ class PropertyContract(models.Model):
     name = fields.Char(string="Ref#.", default="New")
     # Buyer Fields
     partner_id = fields.Many2one('res.partner', required=True, string="Client", readonly=True,
-                                 states={'draft': [('readonly', False)], 'cancelled': [('readonly', False)]})
-    phone = fields.Char(related='partner_id.phone')
-    email = fields.Char(related='partner_id.email')
+                                 states={'draft': [('readonly', False)], 'cancelled': [('readonly', False)]}, track_visibility='onchange')
+    phone = fields.Char(related='partner_id.phone', track_visibility='onchange')
+    email = fields.Char(related='partner_id.email', track_visibility='onchange')
 
     # Seller Fields
-    responsible_person_id = fields.Many2one("res.partner")
-    user_id = fields.Many2one("res.users")
+    responsible_person_id = fields.Many2one("res.partner", track_visibility='onchange')
+    user_id = fields.Many2one("res.users", track_visibility='onchange')
     responsible_person_is = fields.Selection([("dealer", "Dealer"), ("owner", "Owner")],
-                                             related="property_id.responsible_person_is")
-    property_owner_id = fields.Many2one("res.partner", related="property_id.property_owner_id")
+                                             related="property_id.responsible_person_is", track_visibility='onchange')
+    property_owner_id = fields.Many2one("res.partner", related="property_id.property_owner_id", track_visibility='onchange')
 
     # Property Details
-    property_id = fields.Many2one("property.property", string="Property", domain=[('state', '=', 'available')])
+    property_id = fields.Many2one("property.property", string="Property", domain=[('state', '=', 'available')], track_visibility='onchange')
     main_property_id = fields.Many2one('main.property.property', related="property_id.main_property_id",
                                        string="Address", store=True)
     property_for = fields.Selection([('rent', 'Rent'), ('sale', 'Sale')], related='property_id.property_for')
     sale_offer_id = fields.Many2one("property.sale.offer", string="Sale offer", readonly=True,
                                     states={'draft': [('readonly', False)], 'cancelled': [('readonly', False)]},
                                     tracking=True)
-    all_valid_sale_offer_ids = fields.Many2many("property.sale.offer")
+    all_valid_sale_offer_ids = fields.Many2many("property.sale.offer", track_visibility='onchange')
     offer_info_message = fields.Text()
     availability = fields.Selection([("immediately", "Immediately"), ("from_date", "From Date")], string='Availability',
                                     readonly=False, required=True,
@@ -51,8 +51,8 @@ class PropertyContract(models.Model):
     # property_sale_offer_price = fields.Monetary(related="sale_offer_id.offer_price")  # FIXME remove related
 
     # Property Rent Fields
-    rent_price = fields.Monetary(tracking=True)
-    rent_uom = fields.Selection([("month", "Month")])
+    rent_price = fields.Monetary(tracking=True, track_visibility='onchange')
+    rent_uom = fields.Selection([("month", "Month")], track_visibility='onchange')
     minimum_rent_duration = fields.Integer()
     minimum_rent_duration_uom = fields.Selection([("month", "Month(s)")])
     security_deposit_amount = fields.Monetary(readonly=True,
@@ -90,11 +90,11 @@ class PropertyContract(models.Model):
 
     payment_paid = fields.Selection(
         [("all", "Complete"), ("installment", "By Installment"), ("rental_installment", "Rental Installment")],
-        required=True, string="Payment to Pay", default='all', readonly=True,
+        required=True, string="Payment to Pay", default='all', track_visibility='onchange', readonly=True,
         states={'draft': [('readonly', False)], 'cancelled': [('readonly', False)]})
     invoice_id = fields.Many2one("account.move", "Invoice for Complete Payment")
     attachment_ids = fields.Many2many("ir.attachment")
-    confirmation_datetime = fields.Datetime()
+    confirmation_datetime = fields.Datetime( track_visibility='onchange')
     down_payment_amount = fields.Monetary()
     company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
 
