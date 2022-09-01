@@ -35,6 +35,8 @@
                             <group>
                                 <field name="property_type_ids" widget='many2many_tags'
                                        options="{'color_field': 'color'}"/>
+                                 <field name="number_floor"/>
+                                                    <field name="number_units"/>
                             </group>
                         </group>
                         <group>
@@ -69,6 +71,7 @@
                                                            attrs="{'invisible':[('property_for','in',['rent'])]}"/>
                                                     <field name="rent_price"
                                                            attrs="{'invisible':[('property_for','in',['sale'])]}"/>
+
                                                 </group>
                                             </group>
                                             <notebook>

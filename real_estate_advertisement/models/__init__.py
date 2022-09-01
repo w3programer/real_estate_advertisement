@@ -6,6 +6,7 @@ from . import contract_property
 from . import amount_installment
 from . import installment_config
 from . import res_config_settings
+from . import moves
 
 
 

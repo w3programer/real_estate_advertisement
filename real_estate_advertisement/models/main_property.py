@@ -32,6 +32,8 @@ class MainProperty(models.Model):
     image_gallery_doc_ids = fields.One2many("property.document", "main_property_image_id")
     project_id = fields.Many2one("real.project", track_visibility='onchange')
     analytic_acounting_id = fields.Many2one(related="project_id.analytic_acounting_id", string="Cost center", track_visibility='onchange')
+    number_floor = fields.Integer()
+    number_units = fields.Integer()
 
     @api.depends("property_ids.state")
     def _compute_property_state(self):
@@ -161,7 +163,7 @@ class Property(models.Model):
     furnishing = fields.Selection(
         [("unfurnished", "Unfurnished"), ("semi_furnished", "Semi-Furnished"), ("fully_furnished", "Fully-Furnished")],
         default="unfurnished")
-    floor = fields.Char()
+    floor = fields.Integer()
     transaction = fields.Selection([("new", "New Property"), ("resale", "Resale")], default="new", required=True)
     preferred_tenant = fields.Char("Tenants Preferred")
     availability = fields.Selection([("immediately", "Immediately"), ("from_date", "From Date")], string='Availability',
@@ -283,6 +285,20 @@ class Property(models.Model):
             "domain": [('id', 'in', self.contract_property_ids.ids)],
             "name": "Property Contracts",
         }
+
+    @api.onchange('floor')
+    def get_floor(self):
+        if self.floor>0:
+            if self.floor>self.main_property_id.number_floor:
+                raise ValidationError("Main Property has maximum of floor %s"%(self.main_property_id.number_floor))
+    @api.model
+    def create(self,vals):
+        res=super(Property, self).create(vals)
+        property_id=self.env['property.property'].search([('main_property_id','=',res.main_property_id.id)])
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>",len(property_id))
+        if len(property_id)>res.main_property_id.number_units:
+            raise ValidationError("Main Property has maximum of units %s" % (res.main_property_id.number_units))
+        return res
 
 
 class PropertyType(models.Model):
