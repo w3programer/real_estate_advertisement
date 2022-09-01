@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+                <record id="installment_user_notification_cronejob" model="ir.cron">
+                    <field name="name">Installment User Notification</field>
+                    <field name="interval_number">1</field>
+                    <field name="interval_type">minutes</field>
+                    <field name="numbercall">-1</field>
+                    <field name="doall" eval="False"/>
+                    <field name="model_id" ref="real_estate_advertisement.model_property_property_contract"/>
+                    <field name="code">model.action_not()</field>
+                    <field name="state">code</field>
+                </record>
+        <record id="view_property_property_contract_update" model="ir.ui.view">
+            <field name="name">view_property_property_contract_update</field>
+            <field name="model">property.property.contract</field>
+            <field name="inherit_id" ref="real_estate_advertisement.view_property_property_contract_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_confirmed']" position="replace">
+                    <button name="action_revise" string="تدقيق" type="object" class="oe_highlight"
+                            attrs="{'invisible':[('state', '!=','draft')]}"/>
+                    <button name="action_not" string="Show Inbox" type="object" class="oe_highlight"
+                           />
+                    <button name="action_confirmed" string="موافقة" type="object" class="oe_highlight"
+                            attrs="{'invisible':[('state', 'not in', ['revise', 'sent'])]}"
+                            groups="real_state_update.confirm_real_contract"/>
+
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='amount_installment_ids']" position="before">
+                    <group>
+                        <group>
+                            <field name="dyas_notif"/>
+                        </group>
+                        <group>
+                            <field name="user_not"/>
+                        </group>
+                    </group>
+
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem id="realsate_customers"
+                  name="العملاء"
+                  action="account.res_partner_action_customer"
+                  parent="real_estate_advertisement.real_state_menu"
+                  sequence="1"
+        />
+
+
+    </data>
+</odoo>
