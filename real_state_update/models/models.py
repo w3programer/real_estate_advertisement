@@ -10,12 +10,14 @@ class PropertyPropertyContractInherit(models.Model):
     dyas_notif = fields.Integer('Days Before Notification')
     tonow_date = fields.Date(track_visibility='onchange', default=fields.Date.today())
     end_date = fields.Date(track_visibility='onchange')
-    user_not = fields.Many2one('res.users', string='User to notify', required=True)
+    user_not = fields.Many2one('res.users', string='User to notify')
 
     def action_revise(self):
         self.state = 'revise'
 
     def action_not(self):
+        if not self.user_not:
+            raise ValidationError('Please Select User to notify first')
         self.tonow_date = fields.Date.today()
         if self.tonow_date:
             print(self.tonow_date,'hdocjods')
