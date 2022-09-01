@@ -267,9 +267,9 @@ class AmountInstallment(models.Model):
                 "Before creating the invoice for this installment, complete the payment of previous installments!")
 
         today = datetime.datetime.today().date()
-        if today < self.start_date:
-            raise ValidationError("Can't accept payment for the installment before the start date!")
-        print(">>>>>>>>>>>>>",(date.today() - self.due_date).days,(date.today() - self.due_date))
+        # if today < self.start_date:
+        #     raise ValidationError("Can't accept payment for the installment before the start date!")
+        # print(">>>>>>>>>>>>>",(date.today() - self.due_date).days,(date.today() - self.due_date))
         day_dely=0
         if self.property_contract_id.config_installment_id.from_delay =='day':
             day_dely=(date.today() - self.due_date).days
