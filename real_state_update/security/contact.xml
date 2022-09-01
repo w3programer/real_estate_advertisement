@@ -1,0 +1,11 @@
+<odoo>
+    <data noupdate="0">
+
+
+        <record id="confirm_real_contract" model="res.groups">
+            <field name="name">تأكيد عقد العقار</field>
+        </record>
+
+
+    </data>
+</odoo>
