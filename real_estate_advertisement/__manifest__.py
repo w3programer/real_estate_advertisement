@@ -45,6 +45,7 @@
         'report/installment_receipt_template.xml',
         'report/property_description_brochure_template.xml',
         'report/report_property_actions.xml',
+        'report/invoice.xml',
         'data/mail_template_data.xml',
         'views/project.xml',
         'views/invoice.xml',

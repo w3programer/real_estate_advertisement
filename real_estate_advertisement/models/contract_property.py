@@ -5,6 +5,9 @@ from datetime import date
 
 from odoo.exceptions import ValidationError, UserError
 
+from io import BytesIO
+import qrcode
+import base64
 
 class PropertyContract(models.Model):
     _name = 'property.property.contract'
@@ -97,6 +100,38 @@ class PropertyContract(models.Model):
     confirmation_datetime = fields.Datetime( track_visibility='onchange')
     down_payment_amount = fields.Monetary()
     company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
+    qr_code = fields.Binary('QRcode', compute="_generate_qr")
+
+    def _generate_qr(self):
+        "method to generate QR code"
+        for rec in self:
+            if qrcode and base64:
+                qr = qrcode.QRCode(
+                    version=1,
+                    error_correction=qrcode.constants.ERROR_CORRECT_L,
+                    box_size=5,
+                    border=5,
+                )
+                amount = 0
+                if rec.remaining_balance==0:
+                    amount = rec.contract_total_amount_with_tax
+                else:
+                    amount = rec.remaining_balance
+                qr.add_data(rec.company_id.name)
+                # qr.add_data(", Payment Reference : ")
+                # qr.add_data(rec.payment_reference)
+                qr.add_data(", Customer : ")
+                qr.add_data(rec.partner_id.name)
+                qr.add_data(",Contract Date : ")
+                qr.add_data(rec.contract_start_date)
+                qr.add_data(",Due Amount : ")
+                qr.add_data(amount)
+                qr.make(fit=True)
+                img = qr.make_image()
+                temp = BytesIO()
+                img.save(temp, format="PNG")
+                qr_image = base64.b64encode(temp.getvalue())
+                rec.update({'qr_code': qr_image})
 
     def _find_mail_template(self, force_confirmation_template=False):
         template_id = False

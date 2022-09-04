@@ -107,6 +107,15 @@
 
                             </group>
                         </group>
+                        <group>
+                            <group>
+                                <field name="qr_code" widget='image' class="oe_avatar"/>
+                            </group>
+
+                            <grou>
+
+                            </grou>
+                        </group>
                         <notebook>
                             <page string="Payment Details">
                                 <div attrs="{'invisible':[('payment_paid','!=','installment')]}">

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+ <template id="report_invoice_document_qrcode" inherit_id="account.report_invoice_document">
+            <xpath expr="//table" position="before">
+                <center> <img t-att-src="image_data_uri(o.qr_code)" width="150px"
+                                                 height="150px"/></center>
+                <br></br>
+            </xpath>
+ </template>
+    </data>
+</odoo>
