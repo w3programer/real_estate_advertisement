@@ -78,6 +78,8 @@
                     <button name="print_installment_receipt" class="btn-primary" icon="fa-print"
                             string="" attrs="{'invisible':[('invoice_ids','=', [])]}"
                             type="object"/>
+                    <button name="sale_whatsapp" type="object" class="oe_highlight" string="Send Custom Whatsapp Message"
+                        icon="fa-whatsapp"/>
                 </tree>
             </field>
         </record>

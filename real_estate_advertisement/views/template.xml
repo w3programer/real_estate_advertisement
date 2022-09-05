@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="whatsapp_sales_template_installment" model="mail.template">
+        <field name="name">Whats App Installment template</field>
+        <field name="subject">Sales template</field>
+        <field name="model_id" ref="real_estate_advertisement.model_amount_installment"/>
+        <field name="body_html"><![CDATA[<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;">
+         <div>
+            Hello *<t t-out="object.partner_id.name or ''"></t>*,
+         </div>
+
+            Your Installment is due date *<t t-out="object.due_date or ''"></t>
+
+            <div>
+                 Due Amount : *<t t-out="object.balance_amount or ''"></t>
+
+            </div>
+
+
+
+        ]]>
+        </field>
+    </record>
+    </data>
+</odoo>

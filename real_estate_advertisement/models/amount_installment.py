@@ -19,6 +19,7 @@ class AmountInstallment(models.Model):
     installment_payment_datetime = fields.Datetime()
 
     property_contract_id = fields.Many2one("property.property.contract", ondelete='cascade')
+    partner_id = fields.Many2one(related='property_contract_id.partner_id')
     currency_id = fields.Many2one("res.currency", related="property_contract_id.currency_id")
     description = fields.Text(string="Description")
     invoice_ids = fields.One2many("account.move", 'amount_installment_id')
@@ -28,6 +29,50 @@ class AmountInstallment(models.Model):
 
     # installment_total_with_fine = fields.Float()
     is_rental_security_amount_line = fields.Boolean()
+    def sale_whatsapp(self):
+        record_phone = self.partner_id.mobile
+        if not record_phone:
+            view = self.env.ref('odoo_whatsapp_integration.warn_message_wizard')
+            view_id = view and view.id or False
+            context = dict(self._context or {})
+            context['message'] = "Please add a mobile number!"
+            return {
+                'name': 'Mobile Number Field Empty',
+                'type': 'ir.actions.act_window',
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'display.error.message',
+                'views': [(view.id, 'form')],
+                'view_id': view.id,
+                'target': 'new',
+                'context': context
+            }
+        if not record_phone[0] == "+":
+            view = self.env.ref('odoo_whatsapp_integration.warn_message_wizard')
+            view_id = view and view.id or False
+            context = dict(self._context or {})
+            context['message'] = "No Country Code! Please add a valid mobile number along with country code!"
+            return {
+                'name': 'Invalid Mobile Number',
+                'type': 'ir.actions.act_window',
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'display.error.message',
+                'views': [(view.id, 'form')],
+                'view_id': view.id,
+                'target': 'new',
+                'context': context
+            }
+        else:
+            return {'type': 'ir.actions.act_window',
+                    'name': _('Whatsapp Message'),
+                    'res_model': 'whatsapp.wizard',
+                    'target': 'new',
+                    'view_mode': 'form',
+                    'view_type': 'form',
+                    'context': {
+                        'default_template_id': self.env.ref('real_estate_advertisement.whatsapp_sales_template_installment').id},
+                    }
 
     # Amount Fields
 

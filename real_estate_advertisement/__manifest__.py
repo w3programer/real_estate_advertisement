@@ -18,7 +18,7 @@
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['account', 'account_accountant'],
+    'depends': ['account', 'account_accountant','odoo_whatsapp_integration'],
     'external_dependencies': {
         'python': ['qrcode','base64']
     },
@@ -36,6 +36,7 @@
         'views/mail_activity_views.xml',
         'views/res_config_settings_views.xml',
         'views/property_offer_views.xml',
+        'views/template.xml',
         'data/ir_sequence_data.xml',
         'data/mail_data.xml',
         'wizards/property_search_views.xml',
