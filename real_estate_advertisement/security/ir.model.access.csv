@@ -34,3 +34,4 @@ access_property_document,property_document,model_property_document,group_real_es
 access_property_document_readonly,property_document_readonly,model_property_document,,1,0,0,0
 access_property_project,access_property_project,model_real_project,group_real_estate_user,1,1,1,1
 access_property_project_readonly,access_property_project_readonly,model_real_project,,1,0,0,0
+access_property_project_readonly_2,access_property_project_readonly_2,model_real_report_wizard,,1,1,1,1

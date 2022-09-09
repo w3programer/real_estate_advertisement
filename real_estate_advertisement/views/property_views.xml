@@ -97,6 +97,7 @@
                                     <group>
                                         <field name="bedrooms"/>
                                         <field name="facing_direction"/>
+                                        <field name="height_wall"/>
                                         <field name="garage"/>
                                         <field name="garden"/>
                                         <field name="garden_type" attrs="{'required': [('garden', '!=', False)],'invisible': [('garden', '=', False)]}"/>

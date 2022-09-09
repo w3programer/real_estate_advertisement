@@ -13,8 +13,9 @@
                                 <field name="use_for" invisible="1"/>
                                 <field name="untaxed_total_amount" readonly="1"/>
 
-                                <field name="down_payment"
-                                       attrs="{'invisible': [('use_for', '=', 'rent')], 'required': [('use_for', '!=', 'rent')]}"/>
+                                <field name="down_payment" attrs="{'invisible': [('use_for', '=', 'rent')], 'required': [('use_for', '!=', 'rent')]}"/>
+                                <field name="last_payment" attrs="{'invisible': [('use_for', '=', 'rent')], 'required': [('use_for', '!=', 'rent')]}"/>
+
                                 <field name="remain_amount" readonly="1"/>
                                 <field name="installment_amount" readonly="1" force_save="1"
                                        attrs="{'invisible': [('use_for', '=', 'rent')]}"/>

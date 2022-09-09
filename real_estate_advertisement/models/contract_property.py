@@ -99,8 +99,10 @@ class PropertyContract(models.Model):
     attachment_ids = fields.Many2many("ir.attachment")
     confirmation_datetime = fields.Datetime( track_visibility='onchange')
     down_payment_amount = fields.Monetary()
+    last_payment = fields.Monetary()
     company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
     qr_code = fields.Binary('QRcode', compute="_generate_qr")
+
 
     def _generate_qr(self):
         "method to generate QR code"

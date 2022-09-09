@@ -21,15 +21,21 @@ class PropertyInstallment(models.TransientModel):
                                             domain='[("use_for", "=",use_for)]')
     use_for = fields.Selection([("sale", "Sale"), ("rent", "Rent")])
     amount_installment_id = fields.Many2one('amount.installment')
+    last_payment = fields.Monetary(required=True)
 
-    @api.onchange("config_installment_id", "down_payment")
+
+    @api.onchange("config_installment_id", "down_payment","last_payment")
     def onchange_config_installment(self):
         self.down_payment_in_word = self.currency_id.amount_to_text(self.down_payment)
         if self.config_installment_id and self.config_installment_id.use_for == 'sale' and self.remain_amount:
             monthly_interest_rate=0
             if self.config_installment_id.extra_percentage>0:
                 monthly_interest_rate = self.config_installment_id.extra_percentage / (12 * 100)
-            time = self.config_installment_id.no_of_installment
+            last=0
+            if self.last_payment>0:
+                last=1
+
+            time = self.config_installment_id.no_of_installment-last
             div=1
             if monthly_interest_rate>0:
                 emi = self.remain_amount * monthly_interest_rate * ((1 + monthly_interest_rate) ** time) / (
@@ -40,11 +46,11 @@ class PropertyInstallment(models.TransientModel):
             self.monthly_emi = round(emi)
             self.installment_amount = self.monthly_emi * time
 
-    @api.depends('down_payment')
+    @api.depends('down_payment','last_payment')
     def _compute_down_payment(self):
         self.remain_amount=0
         if self.total_amount:
-            self.remain_amount = self.total_amount - self.down_payment
+            self.remain_amount = self.total_amount - self.down_payment -self.last_payment
 
     @api.onchange('monthly_emi')
     def onchange_monthly_emi(self):
@@ -62,6 +68,9 @@ class PropertyInstallment(models.TransientModel):
             print('self.down_payment', self.down_payment)
             if self.down_payment > self.total_amount:
                 self.down_payment = 0
+                raise UserError(_('Down payment should not be greater than Total Amount.'))
+            if self.last_payment > self.total_amount:
+                self.last_payment = 0
                 raise UserError(_('Down payment should not be greater than Total Amount.'))
 
     def create_installment_action(self):
@@ -117,7 +126,11 @@ class PropertyInstallment(models.TransientModel):
                 #     print('due_date ', due_date)
                 # contract_id.total_emi_amount = 0
 
-                for rec in range(self.config_installment_id.no_of_installment):
+                last=0
+                if self.last_payment>0:
+                    last=1
+
+                for rec in range(self.config_installment_id.no_of_installment-last):
                     # self.installment_amount = self.installment_amount - self.monthly_emi
                     # contract_id.remaining_balance = self.installment_amount
 
@@ -143,12 +156,32 @@ class PropertyInstallment(models.TransientModel):
                         "sequence": sequence,
                         "state": "unpaid"
                     }])
+            if self.last_payment>0:
+                tax_amount_dict = contract_id.tax_ids.compute_all(
+                    self.last_payment,
+                    quantity=1.0,
+                    currency=contract_id.currency_id,
+                    partner=contract_id.partner_id,
+                    handle_price_include=False,
+                )
+                print(tax_amount_dict)
+                tax_amount = tax_amount_dict['total_included'] - tax_amount_dict['total_excluded']
+                installment_list.append([0, 0, {
+                    "description": "Last Payment",
+                    "untaxed_amount": self.last_payment - tax_amount,
+                    "amount_with_tax": self.last_payment,
+                    "sequence": sequence,
+                    "state": "unpaid"
+                }])
+
 
                 if installment_list:
                     contract_id.amount_installment_ids = False
                 contract_id.amount_installment_ids = installment_list
                 if self.down_payment:
                     contract_id.down_payment_amount = self.down_payment
+                if self.last_payment:
+                    contract_id.last_payment=self.last_payment
 
             elif contract_id and contract_id.property_for == "rent" and contract_id.payment_paid == "rental_installment":
                 print("contract_id", contract_id)

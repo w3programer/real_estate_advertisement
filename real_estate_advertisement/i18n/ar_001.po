@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 19:17+0000\n"
-"PO-Revision-Date: 2022-08-30 19:17+0000\n"
+"POT-Creation-Date: 2022-09-08 14:45+0000\n"
+"PO-Revision-Date: 2022-09-08 14:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,27 @@ msgstr ""
 #. module: real_estate_advertisement
 #: model:ir.actions.report,print_report_name:real_estate_advertisement.action_report_property_brochure
 msgid "'Property Brochure - %s' % (object.name)"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,body_html:real_estate_advertisement.whatsapp_sales_template_installment
+msgid ""
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;\">\n"
+"         <div>\n"
+"            Hello *<t t-out=\"object.partner_id.name or ''\"></t>*,\n"
+"         </div>\n"
+"\n"
+"            Your Installment is due date *<t t-out=\"object.due_date or ''\"></t>\n"
+"\n"
+"            <div>\n"
+"                 Due Amount : *<t t-out=\"object.balance_amount or ''\"></t>\n"
+"\n"
+"            </div>\n"
+"\n"
+"\n"
+"\n"
+"        \n"
+"        "
 msgstr ""
 
 #. module: real_estate_advertisement
@@ -333,6 +354,15 @@ msgid ""
 msgstr ""
 
 #. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.project_real_view_form
+msgid ""
+"<span class=\"o_form_label o_td_label\" name=\"address_name\">\n"
+"                               \n"
+"                                <b>Address</b>\n"
+"                            </span>"
+msgstr ""
+
+#. module: real_estate_advertisement
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_installment_receipt_document
 msgid ""
 "<span>_________________________</span>\n"
@@ -365,6 +395,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_needaction
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_needaction
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_needaction
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_needaction
 msgid "Action Needed"
 msgstr "الإجراءات اللازمة"
 
@@ -472,6 +503,11 @@ msgid "Are you sure to make the property available?"
 msgstr "هل أنت متأكد من جعل الممتلكات متاحة؟"
 
 #. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__area
+msgid "Area"
+msgstr ""
+
+#. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__area_uom_id
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__area_uom
 msgid "Area Uom"
@@ -493,6 +529,7 @@ msgstr "مرفق"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_attachment_count
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_attachment_count
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_attachment_count
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_attachment_count
 msgid "Attachment Count"
 msgstr "عدد المرفقات"
 
@@ -525,6 +562,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
 msgid "Avatar"
 msgstr "صورة رمزية"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__cost
+msgid "Average cost"
+msgstr ""
 
 #. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__balconies
@@ -580,6 +622,8 @@ msgstr ""
 #. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__city
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__city
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__city
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.project_real_view_form
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_search
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
@@ -587,6 +631,7 @@ msgid "City"
 msgstr "المدينة"
 
 #. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__partner_id
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__partner_id
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
 msgid "Client"
@@ -670,6 +715,12 @@ msgid "Contract Complete Date"
 msgstr "تاريخ اكتمال العقد"
 
 #. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.report_contract_contract_action_2
+#: model:ir.ui.menu,name:real_estate_advertisement.UNIQUE_contarct
+msgid "Contract Report"
+msgstr ""
+
+#. module: real_estate_advertisement
 #: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__state__sent
 msgid "Contract Sent"
 msgstr "اُرسل العقد"
@@ -686,8 +737,23 @@ msgid "Contract Total Amount With Tax"
 msgstr "إجمالي مبلغ العقد مع الضرائب"
 
 #. module: real_estate_advertisement
+#: code:addons/real_estate_advertisement/wizards/wizard_report.py:0
+#, python-format
+msgid "Contracts"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__analytic_acounting_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__analytic_acounting_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__analytic_acounting_id
+msgid "Cost center"
+msgstr ""
+
+#. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__country_id
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__country_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__country_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.project_real_view_form
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_search
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_search_form
@@ -703,7 +769,7 @@ msgstr "انشاء عقد"
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_installment_wizards_form
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
 msgid "Create Installment"
-msgstr "انشاء قسط"
+msgstr "انشاء دفعه"
 
 #. module: real_estate_advertisement
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_amount_installment_tree
@@ -711,6 +777,11 @@ msgstr "انشاء قسط"
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
 msgid "Create Invoice"
 msgstr "انشاء فاتورة"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.actions.act_window,help:real_estate_advertisement.action_main_property_property_id
+msgid "Create new document"
+msgstr ""
 
 #. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__create_uid
@@ -726,6 +797,8 @@ msgstr "انشاء فاتورة"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__create_uid
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__create_uid
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__create_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_report_wizard__create_uid
 msgid "Created by"
 msgstr "انشء بواسطة"
 
@@ -743,6 +816,8 @@ msgstr "انشء بواسطة"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__create_date
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__create_date
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__create_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_report_wizard__create_date
 msgid "Created on"
 msgstr "انشئ في"
 
@@ -771,6 +846,16 @@ msgid "Date Availability"
 msgstr "تاريخ التوفر"
 
 #. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_report_wizard__date_from
+msgid "Date From"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_report_wizard__date_to
+msgid "Date To"
+msgstr ""
+
+#. module: real_estate_advertisement
 #: model:ir.model.fields.selection,name:real_estate_advertisement.selection__config_installment__from_delay__day
 msgid "Day"
 msgstr ""
@@ -779,6 +864,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_config_installment_form
 msgid "Day(s)"
 msgstr "ايام"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__config_installment__duration_type__days
+msgid "Days"
+msgstr ""
 
 #. module: real_estate_advertisement
 #: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__responsible_person_is__dealer
@@ -842,6 +932,8 @@ msgstr "وصف"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__display_name
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__display_name
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__display_name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_report_wizard__display_name
 msgid "Display Name"
 msgstr "الاسم المعروض"
 
@@ -918,9 +1010,15 @@ msgid "Due Date"
 msgstr "تاريخ الاستحقاق"
 
 #. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__duration
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__duration
 msgid "Duration"
 msgstr "مدة"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__duration_type
+msgid "Duration Type"
+msgstr ""
 
 #. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__duration_unit
@@ -930,7 +1028,7 @@ msgstr "وحدة المدة"
 #. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__monthly_emi
 msgid "EMI"
-msgstr "القسط الشهري المعادل"
+msgstr "الدفعه الشهري المعادل"
 
 #. module: real_estate_advertisement
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_config_installment_form
@@ -993,6 +1091,7 @@ msgstr "الطابق"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_follower_ids
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_follower_ids
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_follower_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_follower_ids
 msgid "Followers"
 msgstr "متابعون"
 
@@ -1001,6 +1100,7 @@ msgstr "متابعون"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_partner_ids
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_partner_ids
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_partner_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "المتابعون (الشركاء)"
 
@@ -1105,6 +1205,7 @@ msgstr "لديه خيارات التقسيط"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__has_message
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__has_message
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__has_message
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__has_message
 msgid "Has Message"
 msgstr "رسالة"
 
@@ -1127,6 +1228,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__id
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__id
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_report_wizard__id
 msgid "ID"
 msgstr ""
 
@@ -1149,6 +1252,8 @@ msgstr ""
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_unread
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_needaction
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_unread
+#: model:ir.model.fields,help:real_estate_advertisement.field_real_project__message_needaction
+#: model:ir.model.fields,help:real_estate_advertisement.field_real_project__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -1161,6 +1266,8 @@ msgstr ""
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_has_sms_error
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_has_error
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_has_sms_error
+#: model:ir.model.fields,help:real_estate_advertisement.field_real_project__message_has_error
+#: model:ir.model.fields,help:real_estate_advertisement.field_real_project__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -1217,10 +1324,12 @@ msgid "Inactive"
 msgstr "غير نشط"
 
 #. module: real_estate_advertisement
+#: code:addons/real_estate_advertisement/wizards/wizard_report.py:0
 #: model:ir.model,name:real_estate_advertisement.model_property_installment_wizards
 #: model:ir.ui.menu,name:real_estate_advertisement.Installment_menu
+#, python-format
 msgid "Installment"
-msgstr "الاقساط"
+msgstr "الدفعات"
 
 #. module: real_estate_advertisement
 #: model:mail.template,report_name:real_estate_advertisement.mail_template_contract_installment_paid_ack
@@ -1257,6 +1366,12 @@ msgid "Installment Receipt"
 msgstr ""
 
 #. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.report_contract_installment_action
+#: model:ir.ui.menu,name:real_estate_advertisement.UNIQUE_installent
+msgid "Installment Report"
+msgstr ""
+
+#. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_installment_wizards__config_installment_id
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__installment_scheme_ids
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__config_installment_id
@@ -1277,7 +1392,7 @@ msgstr ""
 #. module: real_estate_advertisement
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
 msgid "Installments"
-msgstr "الاقساط"
+msgstr "الدفعات"
 
 #. module: real_estate_advertisement
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
@@ -1304,6 +1419,7 @@ msgstr "فاتورة الدفع الكامل"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_is_follower
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_is_follower
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_is_follower
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_is_follower
 msgid "Is Follower"
 msgstr "تابع"
 
@@ -1336,6 +1452,8 @@ msgstr "قيد اليومية"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search____last_update
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type____last_update
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project____last_update
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_report_wizard____last_update
 msgid "Last Modified on"
 msgstr "اخر تعديل بواسطة"
 
@@ -1353,6 +1471,8 @@ msgstr "اخر تعديل بواسطة"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__write_uid
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__write_uid
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__write_uid
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_report_wizard__write_uid
 msgid "Last Updated by"
 msgstr "اخر تحديث في"
 
@@ -1370,6 +1490,8 @@ msgstr "اخر تحديث في"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__write_date
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__write_date
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__write_date
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_report_wizard__write_date
 msgid "Last Updated on"
 msgstr "اخر تحديث في"
 
@@ -1406,6 +1528,7 @@ msgstr "المبلغ الرئيسي"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_main_attachment_id
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_main_attachment_id
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_main_attachment_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "المرفق الرئيسي"
 
@@ -1425,6 +1548,7 @@ msgstr "القائمة الرئيسية"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__main_property_id
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__main_property_id
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__main_property_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__main_property_ids
 #: model:ir.ui.menu,name:real_estate_advertisement.main_property_menu
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_search
@@ -1468,6 +1592,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_has_error
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_has_error
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_has_error
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_has_error
 msgid "Message Delivery error"
 msgstr "خطأ في تسليم الرسالة"
 
@@ -1476,6 +1601,7 @@ msgstr "خطأ في تسليم الرسالة"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_ids
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_ids
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_ids
 msgid "Messages"
 msgstr "الرسائل"
 
@@ -1500,6 +1626,7 @@ msgid "Minimum Rent Duration Uom"
 msgstr "الحد الأدنى لمدة الإيجار"
 
 #. module: real_estate_advertisement
+#: model:ir.model.fields.selection,name:real_estate_advertisement.selection__config_installment__duration_type__months
 #: model:ir.model.fields.selection,name:real_estate_advertisement.selection__config_installment__from_delay__month
 #: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__minimum_rent_duration_uom__month
 #: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__rent_uom__month
@@ -1537,6 +1664,7 @@ msgstr "عقاري"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__name
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_type__name
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_usp__name
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__name
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
 msgid "Name"
@@ -1579,10 +1707,21 @@ msgid "Not Available"
 msgstr "غير متاح"
 
 #. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__number_floor
+msgid "Number Floor"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__number_units
+msgid "Number Units"
+msgstr ""
+
+#. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_amount_installment__message_needaction_counter
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_needaction_counter
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_needaction_counter
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_needaction_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_needaction_counter
 msgid "Number of Actions"
 msgstr "عدد الإجراءات"
 
@@ -1591,6 +1730,7 @@ msgstr "عدد الإجراءات"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_has_error_counter
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_has_error_counter
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_has_error_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_has_error_counter
 msgid "Number of errors"
 msgstr "عدد الأخطاء"
 
@@ -1599,6 +1739,7 @@ msgstr "عدد الأخطاء"
 #: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__message_needaction_counter
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_needaction_counter
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_needaction_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_real_project__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr ""
 
@@ -1607,6 +1748,7 @@ msgstr ""
 #: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__message_has_error_counter
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_has_error_counter
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_has_error_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_real_project__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr ""
 
@@ -1615,6 +1757,7 @@ msgstr ""
 #: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__message_unread_counter
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property__message_unread_counter
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__message_unread_counter
+#: model:ir.model.fields,help:real_estate_advertisement.field_real_project__message_unread_counter
 msgid "Number of unread messages"
 msgstr ""
 
@@ -1665,6 +1808,7 @@ msgid "On Rent"
 msgstr "للاجار"
 
 #. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__partner_id
 #: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__responsible_person_is__owner
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
@@ -1726,6 +1870,11 @@ msgstr "دفع جزئي"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__partner_id
 msgid "Partner"
 msgstr "الشريك"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_report_wizard__partner_ids
+msgid "Partner_ids"
+msgstr ""
 
 #. module: real_estate_advertisement
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_contract_document
@@ -1800,6 +1949,14 @@ msgstr "سعر:"
 #: model:ir.model,name:real_estate_advertisement.model_uom_category
 msgid "Product UoM Categories"
 msgstr "فئات وحدات قياس المنتج"
+
+#. module: real_estate_advertisement
+#: model:ir.actions.act_window,name:real_estate_advertisement.real_state_action
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__project_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__project_id
+#: model:ir.ui.menu,name:real_estate_advertisement.menu_project_real
+msgid "Project"
+msgstr ""
 
 #. module: real_estate_advertisement
 #: model:ir.actions.act_window,name:real_estate_advertisement.action_property_property_id
@@ -2065,6 +2222,13 @@ msgid "Put On Maintenance"
 msgstr "ضع على الصيانة"
 
 #. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_account_bank_statement_line__qr_code
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_account_move__qr_code
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__qr_code
+msgid "QRcode"
+msgstr ""
+
+#. module: real_estate_advertisement
 #: model:ir.ui.menu,name:real_estate_advertisement.search_menu
 msgid "Quick Search"
 msgstr "بحث سريع"
@@ -2175,7 +2339,7 @@ msgstr "عرض الإيجار"
 #. module: real_estate_advertisement
 #: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property_contract__payment_paid__rental_installment
 msgid "Rental Installment"
-msgstr "قسط الاجار"
+msgstr "دفعه الاجار"
 
 #. module: real_estate_advertisement
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_contract_form
@@ -2191,6 +2355,11 @@ msgstr "تفاصيل تسعير الإيجار"
 #: model:ir.model,name:real_estate_advertisement.model_ir_actions_report
 msgid "Report Action"
 msgstr "إجراء التقرير"
+
+#. module: real_estate_advertisement
+#: model:ir.ui.menu,name:real_estate_advertisement.real_reports
+msgid "Reports"
+msgstr ""
 
 #. module: real_estate_advertisement
 #: model:ir.model.fields.selection,name:real_estate_advertisement.selection__property_property__transaction__resale
@@ -2225,6 +2394,7 @@ msgstr "مستخدم مسؤول"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_has_sms_error
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_has_sms_error
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_has_sms_error
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr ""
 
@@ -2247,6 +2417,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
 msgid "Sale offer"
 msgstr "عرض البيع"
+
+#. module: real_estate_advertisement
+#: model:mail.template,subject:real_estate_advertisement.whatsapp_sales_template_installment
+msgid "Sales template"
+msgstr ""
 
 #. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_config_installment__name
@@ -2295,6 +2470,11 @@ msgstr "شبه مؤثث"
 #. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_res_config_settings__send_contract_payment_reminder
 msgid "Send Contract Payment Reminder"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_amount_installment_tree
+msgid "Send Custom Whatsapp Message"
 msgstr ""
 
 #. module: real_estate_advertisement
@@ -2380,6 +2560,8 @@ msgstr "تاريخ البدأ"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_rent_offer__state
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_sale_offer__state
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_search__state_id
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__state_id
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.project_real_view_form
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_search
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_contract_search
@@ -2413,11 +2595,18 @@ msgid ""
 msgstr ""
 
 #. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__street
+msgid "Street"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.project_real_view_form
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
 msgid "Street 2..."
 msgstr "شارع 2"
 
 #. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.project_real_view_form
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_main_property_property_form
 msgid "Street..."
 msgstr "شارع ..."
@@ -2427,6 +2616,11 @@ msgstr "شارع ..."
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__street2
 msgid "Street1"
 msgstr "شارع1"
+
+#. module: real_estate_advertisement
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__street2
+msgid "Street2"
+msgstr ""
 
 #. module: real_estate_advertisement
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.report_property_brochure_document
@@ -2534,6 +2728,7 @@ msgstr "غير مدفوع"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_unread
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_unread
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_unread
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_unread
 msgid "Unread Messages"
 msgstr "رسائل غير مقروءة"
 
@@ -2542,6 +2737,7 @@ msgstr "رسائل غير مقروءة"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__message_unread_counter
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__message_unread_counter
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__message_unread_counter
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr ""
 
@@ -2574,9 +2770,19 @@ msgid "User: Own Documents Only"
 msgstr ""
 
 #. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.form_wizard_view_form_2
+msgid "View Contract"
+msgstr ""
+
+#. module: real_estate_advertisement
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_property_property_form
 msgid "View Contracts"
 msgstr "عرض العقود"
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.form_wizard_view_form
+msgid "View Installment"
+msgstr ""
 
 #. module: real_estate_advertisement
 #: model_terms:ir.ui.view,arch_db:real_estate_advertisement.view_amount_installment_tree
@@ -2589,6 +2795,7 @@ msgstr "عرض الفاتورة"
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__website_message_ids
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__website_message_ids
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property_contract__website_message_ids
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_real_project__website_message_ids
 msgid "Website Messages"
 msgstr "رسائل الموقع"
 
@@ -2597,12 +2804,24 @@ msgstr "رسائل الموقع"
 #: model:ir.model.fields,help:real_estate_advertisement.field_main_property_property__website_message_ids
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property__website_message_ids
 #: model:ir.model.fields,help:real_estate_advertisement.field_property_property_contract__website_message_ids
+#: model:ir.model.fields,help:real_estate_advertisement.field_real_project__website_message_ids
 msgid "Website communication history"
 msgstr ""
 
 #. module: real_estate_advertisement
 #: model:ir.model.fields.selection,name:real_estate_advertisement.selection__config_installment__from_delay__week
 msgid "Week"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:mail.template,name:real_estate_advertisement.whatsapp_sales_template_installment
+msgid "Whats App Installment template"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: code:addons/real_estate_advertisement/models/amount_installment.py:0
+#, python-format
+msgid "Whatsapp Message"
 msgstr ""
 
 #. module: real_estate_advertisement
@@ -2625,6 +2844,18 @@ msgstr ""
 #. module: real_estate_advertisement
 #: model:ir.model.fields,field_description:real_estate_advertisement.field_main_property_property__zip
 msgid "Zip"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.form_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.form_wizard_view_form_2
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.project_real_view_form
+msgid "_form"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model_terms:ir.ui.view,arch_db:real_estate_advertisement.project_real_view_tree
+msgid "_tree"
 msgstr ""
 
 #. module: real_estate_advertisement
@@ -2676,6 +2907,16 @@ msgid "property.usp"
 msgstr ""
 
 #. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_real_project
+msgid "real.project"
+msgstr ""
+
+#. module: real_estate_advertisement
+#: model:ir.model,name:real_estate_advertisement.model_real_report_wizard
+msgid "real.report.wizard"
+msgstr ""
+
+#. module: real_estate_advertisement
 #: model:res.groups,comment:real_estate_advertisement.group_real_estate_user
 msgid ""
 "the user will have access to his own data in the real estate application."
@@ -2707,8 +2948,6 @@ msgid "{{ (object.name or '').replace('/','_') }}"
 msgstr ""
 
 #. module: real_estate_advertisement
-#: model_terms:ir.actions.act_window,help:real_estate_advertisement.action_main_property_property_id
-#: model_terms:ir.actions.act_window,help:real_estate_advertisement.action_property_property_contract_id
-#: model_terms:ir.actions.act_window,help:real_estate_advertisement.action_property_property_id
-msgid "إنشاء مستند جديد"
+#: model:ir.model.fields,field_description:real_estate_advertisement.field_property_property__height_wall
+msgid "رفع الجدار"
 msgstr ""

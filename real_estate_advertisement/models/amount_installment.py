@@ -307,9 +307,9 @@ class AmountInstallment(models.Model):
         current_installment_number = self.sequence
         previous_installment_line_ids = self.property_contract_id.amount_installment_ids.filtered(
             lambda installment_line: installment_line.sequence < current_installment_number)
-        if previous_installment_line_ids.filtered(lambda installment_line: installment_line.state != 'paid'):
-            raise ValidationError(
-                "Before creating the invoice for this installment, complete the payment of previous installments!")
+        # if previous_installment_line_ids.filtered(lambda installment_line: installment_line.state != 'paid'):
+        #     raise ValidationError(
+        #         "Before creating the invoice for this installment, complete the payment of previous installments!")
 
         today = datetime.datetime.today().date()
         # if today < self.start_date:

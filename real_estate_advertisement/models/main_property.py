@@ -7,7 +7,7 @@ from odoo.exceptions import ValidationError
 
 ADDRESS_FIELDS = ('street', 'street2', 'zip', 'city', 'state_id', 'country_id')
 
-
+from num2words import num2words
 class MainProperty(models.Model):
     _name = 'main.property.property'
     _inherit = ['mail.thread']
@@ -207,7 +207,42 @@ class Property(models.Model):
     image_gallery_doc_ids = fields.One2many("property.document", "property_image_id")
     project_id = fields.Many2one(related="main_property_id.project_id")
     analytic_acounting_id = fields.Many2one(related="project_id.analytic_acounting_id", string="Cost center")
+    height_wall = fields.Boolean("رفع الجدار")
 
+
+    def get_active_contract(self):
+        contract = self.env['property.property.contract'].search([('state','!=','cancelled'),('property_id','=',self.id)])
+        print("==================================", contract.name)
+        if contract:
+
+            return contract
+        else :
+            []
+    def get_active_amount_installment_ids(self):
+        contract = self.env['property.property.contract'].search([('state','!=','cancelled'),('property_id','=',self.id)])
+        inst=[]
+        if contract:
+            count=1
+            for rec in contract.amount_installment_ids:
+                name=''
+                if rec.balance_amount==contract.down_payment_amount:
+                    name='دفعه التسجيل'
+                if rec.balance_amount==contract.last_payment and count==len(contract.amount_installment_ids):
+                    name='دفعه التسليم'
+                else :
+                    name=" دفعه "+num2words(count,lang='ar')
+                count+=1
+                inst.append({
+                    'key':name,
+                    'value':rec.balance_amount,
+                })
+            print(inst)
+            return inst
+        else :
+            []
+    def get_company(self):
+
+        return self.env.user.company_id.name
     @api.onchange('responsible_person_id')
     def _onchange_responsible_person_id(self):
         if self.responsible_person_id:

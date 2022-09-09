@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="form_wizard_view_form" model="ir.ui.view">
+        <field name="name">form_wizard_view_form</field>
+        <field name="model">real.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="_form">
+                <sheet>
+                    <group>
+                        <field name="date_from" required="1"/>
+                        <field name="date_to" required="1"/>
+                        <field name="partner_ids"  widget ="many2many_tags" />
+
+
+                    </group>
+                      <footer>
+<!--                    <button name="view_contract" type="object" string="View Contract"/>-->
+                    <button name="view_installment" type="object" string="View Installment"/>
+                </footer>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <record id="form_wizard_view_form_2" model="ir.ui.view">
+        <field name="name">form_wizard_view_form</field>
+        <field name="model">real.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="_form">
+                <sheet>
+                    <group>
+                        <field name="date_from" required="1"/>
+                        <field name="date_to" required="1"/>
+                        <field name="partner_ids"  widget ="many2many_tags"  />
+
+
+                    </group>
+                      <footer>
+                    <button name="view_contract" type="object" string="View Contract"/>
+<!--                    <button name="view_installment" type="object" string="View Installment"/>-->
+                </footer>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+   <record id="report_contract_installment_action" model="ir.actions.act_window">
+       <field name="name">Installment Report</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">real.report.wizard</field>
+       <field name="view_mode">form</field>
+       <field name="view_id" ref="form_wizard_view_form"/>
+        <!--<field name="target">new</field>-->
+        <field name="target">inline</field>
+   </record>
+
+    <record id="report_contract_contract_action_2" model="ir.actions.act_window">
+       <field name="name">Contract Report</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">real.report.wizard</field>
+       <field name="view_mode">form</field>
+       <field name="view_id" ref="form_wizard_view_form_2"/>
+        <!--<field name="target">new</field>-->
+        <field name="target">inline</field>
+   </record>
+
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="real_reports" name="Reports" parent="real_state_menu"   sequence="5"/>
+    <menuitem id="UNIQUE_installent" name="Installment Report" parent="real_reports" action="report_contract_installment_action" sequence="1"/>
+    <menuitem id="UNIQUE_contarct" name="Contract Report" parent="real_reports" action="report_contract_contract_action_2" sequence="2"/>
+</odoo>

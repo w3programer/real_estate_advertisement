@@ -519,6 +519,66 @@
 
                     </t>
                 </div>
+
+            </t>
+        </template>
+        <template id="installment_print">
+            <t t-call="web.external_layout">
+                <div class="page">
+
+                    <h3>
+                        <center>
+                              <span t-esc="doc.get_company()"/>
+                            نظام تسديد اقساط الشقق في
+
+                        </center>
+                    </h3>
+
+                    <table class="table table-sm  " dir="rtl">
+                        <t t-if="doc.get_active_contract()">
+                            <t t-set="contract" t-value="doc.get_active_contract()"/>
+                            <tr>
+                                <td class="text-center">مساحه الشقه</td>
+                                <td class="text-center">
+                                    <span t-esc="doc.super_area"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"> سعر المتر</td>
+                                <t t-if="doc.super_area &gt; 0">
+                                    <td class="text-center">
+                                        <span t-esc="contract.property_selling_price/doc.super_area"/>
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td class="text-center">السعر الكلي</td>
+                                <td class="text-center">
+                                    <span t-esc="contract.property_selling_price"/>
+                                </td>
+                            </tr>
+                            <t t-foreach="doc.get_active_amount_installment_ids()" t-as="con">
+                                <tr>
+                                      <td class="text-center"><span t-esc="con['key']"/> </td>
+                                      <td class="text-center"><span t-esc="con['value']"/> </td>
+
+                                </tr>
+                            </t>
+                        </t>
+                    </table>
+
+
+                    <div class="text-right">
+
+                        ملاحــــظه : تسديد القسط يكون كل ثلاثه شهور
+                        <br></br>
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        أجور التسجيل و فتح اضبار 200$ غير قابله للرد
+
+                    </div>
+
+                </div>
             </t>
         </template>
 
@@ -526,6 +586,8 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="doc">
                     <t t-call="real_estate_advertisement.report_property_brochure_document"
+                       t-lang="doc.responsible_person_id.lang"/>
+                    <t t-call="real_estate_advertisement.installment_print"
                        t-lang="doc.responsible_person_id.lang"/>
                 </t>
             </t>

@@ -42,6 +42,7 @@
         'wizards/property_search_views.xml',
         'wizards/installment_views.xml',
         'wizards/payment_views.xml',
+        'wizards/wizard_report.xml',
         'report/property_contract_report_templates.xml',
         'report/installment_receipt_template.xml',
         'report/property_description_brochure_template.xml',
