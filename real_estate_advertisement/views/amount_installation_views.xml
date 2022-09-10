@@ -6,7 +6,7 @@
             <field name="name">view.amount.installment.form</field>
             <field name="model">amount.installment</field>
             <field name="arch" type="xml">
-                <form create="0" delete="0" edit="0">
+                <form create="0" delete="0" >
                     <header>
                         <field name="state" widget="statusbar" statusbar_visible="unpaid,partial,paid,delay"/>
                         <!--                        <field name="state" widget="badge" decoration-danger="state == 'unpaid'"-->

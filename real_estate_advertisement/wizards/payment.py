@@ -11,7 +11,7 @@ class EmiPayment(models.TransientModel):
     total_amount = fields.Monetary()
     paid_amount = fields.Monetary()
     tax_amount = fields.Monetary()
-    journal_id = fields.Many2one('account.journal', required=True)
+    journal_id = fields.Many2one('account.journal', required=True,domain="[('type','=','sale')]")
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)
     amount_installment_id = fields.Many2one('amount.installment')
     partner_id = fields.Many2one('res.partner')

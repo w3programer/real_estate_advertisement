@@ -177,8 +177,9 @@ class AmountInstallment(models.Model):
                 else:
                     rec.fully_invoiced = False
 
-            if rec.invoice_date and rec.start_date and rec.due_date and (
-                    rec.start_date <= rec.invoice_date <= rec.due_date):
+            if rec.invoice_date and rec.start_date and rec.due_date :
+                # if rec.invoice_date and rec.start_date and rec.due_date and (
+                #     rec.start_date <= rec.invoice_date <= rec.due_date):
                 rec.delay_fine_amount = 0
                 rec.amount_total = 0 + rec.amount_with_tax
                 # rec.state = "unpaid"
