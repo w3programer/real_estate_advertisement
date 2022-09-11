@@ -43,6 +43,7 @@ class PropertyContract(models.Model):
                                     readonly=False, required=True,
                                     states={'draft': [('readonly', False)], 'cancelled': [('readonly', False)]})
     date_availability = fields.Date(string='Property Availability Date')
+    date_delivery = fields.Date(string='Delivery Date')
     contract_start_date = fields.Datetime(default=fields.Datetime.now())
     contract_complete_date = fields.Datetime(readonly=True,
                                              states={'draft': [('readonly', False)],
