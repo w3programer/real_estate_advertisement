@@ -77,6 +77,7 @@
                                        attrs="{'invisible': [('property_for', '=', 'rent')]}"/>
                                 <field name="confirmation_datetime"
                                        attrs="{'invisible': [('confirmation_datetime', '=', False)]}"/>
+                                <field name="date_delivery"/>
                             </group>
                         </group>
                         <h5 attrs="{'invisible': [('offer_info_message', '=', False)]}" class="text-info">

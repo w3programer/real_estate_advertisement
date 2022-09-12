@@ -103,7 +103,7 @@
                                     <th>Dealer</th>
                                     <td>
                                         <span t-field="doc.responsible_person_id"
-                                              t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
+                                              t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'/>
                                     </td>
                                 </tr>
 
@@ -162,6 +162,18 @@
                                     <span t-esc="doc.main_property_id.display_address()"/>
                                 </td>
                             </tr>
+                             <tr>
+                                <th>Building</th>
+                                <td>
+                                    <span t-field="doc.property_id.main_property_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Floor</th>
+                                <td>
+                                    <span t-field="doc.property_id.floor"/>
+                                </td>
+                            </tr>
                             <tr>
                                 <th>For</th>
                                 <td>
@@ -182,6 +194,24 @@
                                 <th>Confirmation Date</th>
                                 <td>
                                     <span t-field="doc.confirmation_datetime"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Delivery Date</th>
+                                <td>
+                                    <span t-field="doc.date_delivery"/>
+                                </td>
+                            </tr>
+                             <tr>
+                                <th>Total Price</th>
+                                <td>
+                                    <span t-field="doc.property_id.selling_price"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Area</th>
+                                <td>
+                                    <span t-field="doc.property_id.super_area"/>
                                 </td>
                             </tr>
                             <t t-if="doc.availability == 'immediately'">
