@@ -18,7 +18,7 @@
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['account', 'account_accountant','odoo_whatsapp_integration'],
+    'depends': ['account', 'account_accountant','odoo_whatsapp_integration','partner_custom'],
     'external_dependencies': {
         'python': ['qrcode','base64']
     },

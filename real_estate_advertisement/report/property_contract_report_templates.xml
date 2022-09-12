@@ -112,6 +112,10 @@
                                     <td>
                                         <span t-field="doc.property_owner_id"
                                               t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                                         <br></br>
+                                        <span t-field="doc.responsible_person_id.land_1"/>-
+                                        <span t-field="doc.responsible_person_id.land_2"/>-
+                                        <span t-field="doc.responsible_person_id.land_3"/>
                                     </td>
                                 </tr>
 
@@ -122,7 +126,11 @@
                                     <th>Owner</th>
                                     <td>
                                         <span t-field="doc.responsible_person_id"
-                                              t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
+                                              t-options='{"widget": "contact", "fields": ["address", "name", "phone", "land_1","land_2","land_3"], "no_marker": True}'/>
+                                        <br></br>
+                                        <span t-field="doc.responsible_person_id.land_1"/>-
+                                        <span t-field="doc.responsible_person_id.land_2"/>-
+                                        <span t-field="doc.responsible_person_id.land_3"/>
                                     </td>
                                 </tr>
                             </t>
