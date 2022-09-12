@@ -2,52 +2,52 @@
 <odoo>
 
     <template id="installment_table">
-<!--        <div class="row" >-->
-<!--            <div class="col-12" >-->
-                <table class="table table-sm">
-                    <thead>
-                        <th>Description</th>
-                        <th class="text-center">Payment Date</th>
-                        <th class="text-center">Due Date</th>
-                        <th class="text-center">Amount</th>
-                        <th class="text-center">Delay Fine</th>
-                        <th class="text-center">Paid Amount</th>
-                        <th class="text-center">Remaining Amount</th>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="doc.amount_installment_ids" t-as="installment_id">
-                            <tr>
-                                <td>
-                                    <span t-field="installment_id.description"/>
-                                </td>
-                                <td class="text-center">
-                                    <span t-field="installment_id.start_date"/>
-                                </td>
-                                <td class="text-center">
-                                    <span t-field="installment_id.due_date"/>
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="installment_id.amount_total"
-                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="installment_id.delay_fine_amount"
-                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="installment_id.paid_amount"
-                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="installment_id.balance_amount"
-                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
-                                </td>
-                            </tr>
-                        </t>
-                    </tbody>
-                </table>
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="row" >-->
+        <!--            <div class="col-12" >-->
+        <table class="table table-sm">
+            <thead>
+                <th>Description</th>
+                <th class="text-center">Payment Date</th>
+                <th class="text-center">Due Date</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Delay Fine</th>
+                <th class="text-center">Paid Amount</th>
+                <th class="text-center">Remaining Amount</th>
+            </thead>
+            <tbody>
+                <t t-foreach="doc.amount_installment_ids" t-as="installment_id">
+                    <tr>
+                        <td>
+                            <span t-field="installment_id.description"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="installment_id.start_date"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="installment_id.due_date"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="installment_id.amount_total"
+                                  t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="installment_id.delay_fine_amount"
+                                  t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="installment_id.paid_amount"
+                                  t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="installment_id.balance_amount"
+                                  t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+        <!--            </div>-->
+        <!--        </div>-->
 
     </template>
 
@@ -61,8 +61,10 @@
                 <div class="oe_structure"/>
                 <h1 t-field="doc.name"/>
 
-                <center> <img t-att-src="image_data_uri(doc.qr_code)" width="150px"
-                                                 height="150px"/></center>
+                <center>
+                    <img t-att-src="image_data_uri(doc.qr_code)" width="150px"
+                         height="150px"/>
+                </center>
                 <div class="row">
                     <div class="col-6 pr-0">
                         <h5 style="background: #4c4c4c;margin-bottom: 0;padding: 7px;font-weight: bold;color: white;">
@@ -112,7 +114,7 @@
                                     <td>
                                         <span t-field="doc.property_owner_id"
                                               t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
-                                         <br></br>
+                                        <br></br>
                                         <span t-field="doc.responsible_person_id.land_1"/>-
                                         <span t-field="doc.responsible_person_id.land_2"/>-
                                         <span t-field="doc.responsible_person_id.land_3"/>
@@ -162,7 +164,7 @@
                                     <span t-esc="doc.main_property_id.display_address()"/>
                                 </td>
                             </tr>
-                             <tr>
+                            <tr>
                                 <th>Building</th>
                                 <td>
                                     <span t-field="doc.property_id.main_property_id"/>
@@ -202,7 +204,7 @@
                                     <span t-field="doc.date_delivery"/>
                                 </td>
                             </tr>
-                             <tr>
+                            <tr>
                                 <th>Total Price</th>
                                 <td>
                                     <span t-field="doc.property_id.selling_price"/>
