@@ -107,6 +107,11 @@
                                         <td>
                                             <span t-field="doc.property_owner_id"
                                                   t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+
+                                            <br></br>
+                                            <span t-field="doc.property_owner_id.land_1"/>-
+                                            <span t-field="doc.property_owner_id.land_2"/>-
+                                            <span t-field="doc.property_owner_id.land_3"/>
                                         </td>
                                     </tr>
 
@@ -119,6 +124,11 @@
                                         <td>
                                             <span t-field="doc.responsible_person_id"
                                                   t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
+
+                                          <br></br>
+                                        <span t-field="doc.responsible_person_id.land_1"/>-
+                                        <span t-field="doc.responsible_person_id.land_2"/>-
+                                        <span t-field="doc.responsible_person_id.land_3"/>
                                         </td>
                                     </tr>
                                 </t>
@@ -528,7 +538,7 @@
 
                     <h3>
                         <center>
-                              <span t-esc="doc.get_company()"/>
+                            <span t-esc="doc.get_company()"/>
                             نظام تسديد اقساط الشقق في
 
                         </center>
@@ -544,7 +554,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-center"> سعر المتر</td>
+                                <td class="text-center">سعر المتر</td>
                                 <t t-if="doc.super_area &gt; 0">
                                     <td class="text-center">
                                         <span t-esc="contract.property_selling_price/doc.super_area"/>
@@ -559,8 +569,12 @@
                             </tr>
                             <t t-foreach="doc.get_active_amount_installment_ids()" t-as="con">
                                 <tr>
-                                      <td class="text-center"><span t-esc="con['key']"/> </td>
-                                      <td class="text-center"><span t-esc="con['value']"/> </td>
+                                    <td class="text-center">
+                                        <span t-esc="con['key']"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-esc="con['value']"/>
+                                    </td>
 
                                 </tr>
                             </t>

@@ -115,9 +115,9 @@
                                         <span t-field="doc.property_owner_id"
                                               t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
                                         <br></br>
-                                        <span t-field="doc.responsible_person_id.land_1"/>-
-                                        <span t-field="doc.responsible_person_id.land_2"/>-
-                                        <span t-field="doc.responsible_person_id.land_3"/>
+                                        <span t-field="doc.property_owner_id.land_1"/>-
+                                        <span t-field="doc.property_owner_id.land_2"/>-
+                                        <span t-field="doc.property_owner_id.land_3"/>
                                     </td>
                                 </tr>
 
