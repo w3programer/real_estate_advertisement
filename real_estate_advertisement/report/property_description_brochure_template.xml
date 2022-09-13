@@ -109,9 +109,9 @@
                                                   t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
 
                                             <br></br>
-                                            <span t-field="doc.property_owner_id.land_1"/>-
-                                            <span t-field="doc.property_owner_id.land_2"/>-
-                                            <span t-field="doc.property_owner_id.land_3"/>
+                                            <p t-field="doc.property_owner_id.land_1"/>
+                                            <p t-field="doc.property_owner_id.land_2"/>
+                                            <p t-field="doc.property_owner_id.land_3"/>
                                         </td>
                                     </tr>
 
@@ -126,9 +126,9 @@
                                                   t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
 
                                           <br></br>
-                                        <span t-field="doc.responsible_person_id.land_1"/>-
-                                        <span t-field="doc.responsible_person_id.land_2"/>-
-                                        <span t-field="doc.responsible_person_id.land_3"/>
+                                        <p t-field="doc.responsible_person_id.land_1"/>
+                                        <p t-field="doc.responsible_person_id.land_2"/>
+                                        <p t-field="doc.responsible_person_id.land_3"/>
                                         </td>
                                     </tr>
                                 </t>
