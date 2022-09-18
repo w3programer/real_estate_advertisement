@@ -24,6 +24,7 @@ class AmountInstallment(models.Model):
     description = fields.Text(string="Description")
     invoice_ids = fields.One2many("account.move", 'amount_installment_id')
     invoice_date = fields.Date()
+    total_paid = fields.Float(required=True)
 
     # invoiced_amount = fields.Float(compute="_compute_amount")
 
@@ -129,7 +130,13 @@ class AmountInstallment(models.Model):
                 print(">>>>>>>>>>>>>>>>>>>",days,rec.due_date)
                 per_day_fine_percent = rec.property_contract_id.config_installment_id.delay_fine
                 if per_day_fine_percent>0:
-                     per_day_fine_amount = rec.amount_with_tax * per_day_fine_percent / 100
+                    if rec.property_contract_id.config_installment_id.type == 'prec':
+
+                        per_day_fine_amount = rec.amount_with_tax * per_day_fine_percent / 100
+                    elif rec.property_contract_id.config_installment_id.type == 'amount':
+
+                        per_day_fine_amount = per_day_fine_percent
+
                 else:
                     per_day_fine_amount = rec.amount_with_tax
                 total_fine = per_day_fine_amount * days
@@ -143,7 +150,12 @@ class AmountInstallment(models.Model):
             if rec.invoice_date and rec.due_date and rec.invoice_date > rec.due_date:
                 days = (rec.invoice_date - rec.due_date).days
                 per_day_fine_percent = rec.property_contract_id.config_installment_id.delay_fine
-                per_day_fine_amount = rec.amount_with_tax * per_day_fine_percent / 100
+                if rec.property_contract_id.config_installment_id.type == 'prec':
+
+                    per_day_fine_amount = rec.amount_with_tax * per_day_fine_percent / 100
+                elif rec.property_contract_id.config_installment_id.type == 'amount':
+
+                    per_day_fine_amount = per_day_fine_percent
                 total_fine = per_day_fine_amount * days
                 rec.delay_fine_amount = total_fine
                 rec.amount_total = total_fine + rec.amount_with_tax

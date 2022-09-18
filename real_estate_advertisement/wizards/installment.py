@@ -15,13 +15,14 @@ class PropertyInstallment(models.TransientModel):
     remain_amount = fields.Monetary(compute='_compute_down_payment')
     installment_amount = fields.Monetary("Total Remaining Payable Amount With Interest")
 
-    monthly_emi = fields.Monetary("EMI")
+    monthly_emi = fields.Float("EMI")
     message = fields.Char()
     config_installment_id = fields.Many2one('config.installment', string="Installment Scheme", required=True,
                                             domain='[("use_for", "=",use_for)]')
     use_for = fields.Selection([("sale", "Sale"), ("rent", "Rent")])
     amount_installment_id = fields.Many2one('amount.installment')
     last_payment = fields.Monetary(required=True)
+
 
 
     @api.onchange("config_installment_id", "down_payment","last_payment")
@@ -37,14 +38,21 @@ class PropertyInstallment(models.TransientModel):
 
             time = self.config_installment_id.no_of_installment-last
             div=1
+
             if monthly_interest_rate>0:
                 emi = self.remain_amount * monthly_interest_rate * ((1 + monthly_interest_rate) ** time) / (
                         (1 + monthly_interest_rate) ** time - 1)
             else:
                 emi=self.remain_amount/time
+            print(">>>>>>>>>>>>>>>>>",monthly_interest_rate)
+            print(">>>>>>>>>>>>>>>>>",self.remain_amount)
+            print(">>>>>>>>>>>>>>>>>",emi,time)
 
-            self.monthly_emi = round(emi)
-            self.installment_amount = self.monthly_emi * time
+            self.monthly_emi = round(emi,3)
+            self.installment_amount = round(self.monthly_emi * time,3)
+            print(">>>>>>>>>>>>>>>>>", monthly_interest_rate)
+            print(">>>>>>>>>>>>>>>>>", self.remain_amount)
+            print(">>>>>>>>>>>>>>>>>", self.monthly_emi, time)
 
     @api.depends('down_payment','last_payment')
     def _compute_down_payment(self):
@@ -129,7 +137,7 @@ class PropertyInstallment(models.TransientModel):
                 last=0
                 if self.last_payment>0:
                     last=1
-
+                print(">>>>.",self.config_installment_id.no_of_installment,last)
                 for rec in range(self.config_installment_id.no_of_installment-last):
                     # self.installment_amount = self.installment_amount - self.monthly_emi
                     # contract_id.remaining_balance = self.installment_amount
@@ -175,13 +183,14 @@ class PropertyInstallment(models.TransientModel):
                 }])
 
 
-                if installment_list:
-                    contract_id.amount_installment_ids = False
-                contract_id.amount_installment_ids = installment_list
-                if self.down_payment:
-                    contract_id.down_payment_amount = self.down_payment
-                if self.last_payment:
-                    contract_id.last_payment=self.last_payment
+
+            if installment_list:
+                contract_id.amount_installment_ids = False
+            contract_id.amount_installment_ids = installment_list
+            if self.down_payment:
+                contract_id.down_payment_amount = self.down_payment
+            if self.last_payment:
+                contract_id.last_payment=self.last_payment
 
             elif contract_id and contract_id.property_for == "rent" and contract_id.payment_paid == "rental_installment":
                 print("contract_id", contract_id)

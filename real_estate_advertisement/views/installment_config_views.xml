@@ -18,6 +18,7 @@
                                  <field name="duration" attrs="{'invisible':[('use_for','!=','sale')]}"/>
                                 <field name="no_of_installment"
                                        attrs="{'invisible': [('use_for','=','rent')], 'required':[('use_for','!=','rent')]}"/>
+                               <field name="type"/>
                                 <label for="apply_fine_after"/>
                                 <div class="o_row">
                                     <field name="apply_fine_after" force_save="1"/>

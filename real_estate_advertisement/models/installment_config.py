@@ -15,6 +15,7 @@ class ConfigInstallment(models.Model):
     use_for = fields.Selection([("sale", "Sale"), ("rent", "Rent")], default="sale", required=True)
     duration = fields.Integer(default=1)
     duration_type = fields.Selection([('days', 'Days'), ('months', 'Month')], default='months')
+    type = fields.Selection([('amount','Amount'),('prec','Percentage')],default='prec')
     @api.onchange("use_for")
     def onchange_use_for(self):
         if self.use_for == "rent":
