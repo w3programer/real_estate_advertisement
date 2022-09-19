@@ -108,7 +108,7 @@ class AmountInstallment(models.Model):
             ))
         return res
 
-    @api.depends('invoice_ids.payment_state')
+    @api.depends('invoice_ids.payment_state','invoice_ids')
     def _compute_amount(self):
         for rec in self:
             rec.delay_fine_amount = 0
@@ -159,8 +159,17 @@ class AmountInstallment(models.Model):
                 total_fine = per_day_fine_amount * days
                 rec.delay_fine_amount = total_fine
                 rec.amount_total = total_fine + rec.amount_with_tax
-                invoice_due_total = sum(rec.invoice_ids.mapped("amount_residual"))
-                invoice_total = sum(rec.invoice_ids.mapped("amount_total"))  # i.e. installment_total
+                invoice_due_total = invoice_total = 0
+                for inv in rec.invoice_ids:
+                    print("====================", inv.name, inv.move_type, inv.amount_residual)
+                    if inv.move_type != 'entry':
+                        invoice_due_total += inv.amount_residual
+                        invoice_total += inv.amount_total
+
+
+                # invoice_due_total = sum(rec.invoice_ids.mapped("amount_residual"))
+
+                # invoice_total = sum(rec.invoice_ids.mapped("amount_total"))  # i.e. installment_total
                 is_equal = float_compare(total_fine + rec.amount_with_tax, invoice_total,
                                          precision_digits=rec.property_contract_id.currency_id.decimal_places)
 
@@ -198,13 +207,20 @@ class AmountInstallment(models.Model):
                 # rec.paid_amount = 0
                 # rec.balance_amount = rec.amount_with_tax
                 # rec.fully_invoiced = False
-                invoice_due_total = sum(rec.invoice_ids.mapped("amount_residual"))
-                invoice_total = sum(rec.invoice_ids.mapped("amount_total"))  # i.e. installment_total
+                # invoice_due_total = sum(rec.invoice_ids.mapped("amount_residual"))
+                invoice_due_total=invoice_total=0
+                for inv in rec.invoice_ids:
+                    print("====================", inv.name, inv.move_type, inv.amount_residual)
+                    if inv.move_type != 'entry':
+                        invoice_due_total += inv.amount_residual
+                        invoice_total += inv.amount_total
+                # invoice_total = sum(rec.invoice_ids.mapped("amount_total"))  # i.e. installment_total
+
                 is_equal = float_compare(rec.amount_with_tax, invoice_total,
                                          precision_digits=rec.property_contract_id.currency_id.decimal_places)
 
                 if invoice_due_total:
-                    print("invoice_due_total >>>>>>", invoice_due_total, is_equal, rec.amount_with_tax, invoice_total)
+
                     is_equal_ = float_compare(rec.amount_with_tax, invoice_due_total,
                                               precision_digits=rec.property_contract_id.currency_id.decimal_places)
                     if is_equal_ == 0:
@@ -363,7 +379,7 @@ class AmountInstallment(models.Model):
             "res_model": "account.move",
             "view_mode": "tree,form",
             "name": "Invoice ",
-            "domain": [('id', 'in', self.invoice_ids.ids)],
+            "domain": [('id', 'in', self.invoice_ids.ids),('move_type','!=','entry')],
             "target": "current"
         }
 
