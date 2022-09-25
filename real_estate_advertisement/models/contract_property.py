@@ -9,6 +9,11 @@ from io import BytesIO
 import qrcode
 import base64
 
+class partner_custom(models.Model):
+    _inherit = 'res.partner'
+    x_id_num = fields.Char("رقم الهوية")
+    x_id_date = fields.Date(" تاريخ اصدار الهوية")
+
 class PropertyContract(models.Model):
     _name = 'property.property.contract'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -23,7 +28,7 @@ class PropertyContract(models.Model):
     email = fields.Char(related='partner_id.email', track_visibility='onchange')
 
     # Seller Fields
-    responsible_person_id = fields.Many2one("res.partner", track_visibility='onchange')
+    responsible_person_id = fields.Many2one("res.partner", string="seller Company",track_visibility='onchange',domain=[('is_company', '=', True)])
     user_id = fields.Many2one("res.users", track_visibility='onchange')
     responsible_person_is = fields.Selection([("dealer", "Dealer"), ("owner", "Owner")],
                                              related="property_id.responsible_person_is", track_visibility='onchange')
@@ -343,8 +348,8 @@ class PropertyContract(models.Model):
             user_id = self.env["res.users"].sudo().search([("partner_id", "=", self.responsible_person_id.id)], limit=1)
             if user_id and user_id.has_group("real_estate_advertisement.group_real_estate_user"):
                 self.user_id = user_id.id
-            else:
-                raise ValidationError("Only Property Users are allowed!")
+            # else:
+            #     raise ValidationError("Only Property Users are allowed!")
 
     @api.onchange('property_id', 'partner_id')
     def _onchange_property_id(self):

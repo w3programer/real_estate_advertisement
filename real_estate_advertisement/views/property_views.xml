@@ -57,7 +57,7 @@
                             <group>
                                 <field name="property_type_id"/>
                                 <field name="property_for"/>
-                                <field name="expected_price" attrs="{'invisible':[('property_for','in',['rent'])]}"/>
+                                <field name="expected_price" invisible="1"/>
                                 <field name="selling_price" attrs="{'invisible':[('property_for','in',['rent'])]}"/>
                                 <!--                                <field name="user_group"/>-->
                                 <field name="responsible_person_id" readonly="1"/>
@@ -318,7 +318,7 @@
                     <field name="date_availability" optional="show"
                            attrs="{'invisible': [('availability', '=', 'immediately')]}"/>
                     <field name="living_area"/>
-                    <field name="expected_price" optional="show"/>
+<!--                    <field name="expected_price" optional="show"/>-->
                     <field name="selling_price" optional="hide"/>
                     <field name="state"
                            decoration-success="state == 'sold' or state == 'in_contract' or state == 'on_rent'"
@@ -392,7 +392,7 @@
 
                                     <div class="mt-1">
                                         Price:
-                                        <field name="expected_price" widget="monetary"
+                                        <field name="selling_price" widget="monetary"
                                                options="{'currency_field': 'currency_id', 'field_digits': True}"/>
                                     </div>
 

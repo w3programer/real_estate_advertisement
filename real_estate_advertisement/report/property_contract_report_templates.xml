@@ -76,6 +76,7 @@
                                 <td>
                                     <span t-field="doc.partner_id"
                                           t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+
                                 </td>
                             </tr>
 
@@ -85,6 +86,22 @@
                                     <span t-field="doc.phone"/>
                                 </td>
                             </tr>
+                            <t t-if="doc.partner_id.x_id_num">
+                                <tr>
+                                    <th>رقم الهوية</th>
+                                    <td>
+                                        <span t-field="doc.partner_id.x_id_num"/>
+                                    </td>
+                                </tr>
+                            </t>
+                            <t t-if="doc.partner_id.x_id_date">
+                                <tr>
+                                    <th>تاريخ اصدار الهوية</th>
+                                    <td>
+                                        <span t-field="doc.partner_id.x_id_date"/>
+                                    </td>
+                                </tr>
+                            </t>
 
 
                             <tr>

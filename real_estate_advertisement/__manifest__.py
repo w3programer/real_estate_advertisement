@@ -51,6 +51,7 @@
         'data/mail_template_data.xml',
         'views/project.xml',
         'views/invoice.xml',
+        'views/partner.xml',
     ],
     'assets': {
         'web.assets_backend': [

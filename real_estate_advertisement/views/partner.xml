@@ -1,0 +1,18 @@
+<odoo>
+ <!-- Inherit Form View to Modify it -->
+ <record id="view_partner_form_4" model="ir.ui.view">
+     <field name="name">view_partner_form_3</field>
+     <field name="model">res.partner</field>
+     <field name="inherit_id" ref="base.view_partner_form"/>
+     <field name="arch" type="xml">
+
+         <xpath expr="//field[@name='vat']" position="before">
+
+           <field name="x_id_num"/>
+           <field name="x_id_date"/>
+             <!-- Add your fields or attributes here -->
+         </xpath>
+
+     </field>
+ </record>
+</odoo>
