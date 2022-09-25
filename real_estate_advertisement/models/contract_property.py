@@ -11,8 +11,8 @@ import base64
 
 class partner_custom(models.Model):
     _inherit = 'res.partner'
-    # x_id_num = fields.Char("رقم الهوية")
-    # x_id_date = fields.Date(" تاريخ اصدار الهوية")
+    x_id_num = fields.Char("رقم الهوية")
+    x_id_date = fields.Date(" تاريخ اصدار الهوية")
 
 class PropertyContract(models.Model):
     _name = 'property.property.contract'
